@@ -38,13 +38,13 @@ const OurFleet = ({ data }) => {
         <h1 className="text-center py-5 text-theme fw-semibold">Our Fleet</h1>
         <div className="brand-type d-flex justify-content-center pb-3">
           <div
-            className="btn-group d-block d-md-flex fleet"
+            className="btn-group d-block fleet"
             role="group"
             aria-label="Basic radio toggle button group"
           >
             <input
               type="radio"
-              className="btn-check"
+              className="btn-check "
               name="btnradio"
               id="btnradio1"
               value={"all"}
@@ -104,7 +104,7 @@ const OurFleet = ({ data }) => {
               autoComplete="off"
             />
             <label
-              className={`text-theme btn btn-outline-secondary mt-4 mt-md-0  ${
+              className={`text-theme btn btn-outline-secondary mt-md-0  ${
                 Category === "sedan" ? "active" : ""
               }`}
               htmlFor="btnradio4"

@@ -16,3 +16,28 @@
     width: 110%;
   }
 }
+@media (max-width: 560px) {
+  .fleet-btn label {
+    color: #fff;
+    padding-right: 15px;
+    padding-left: 20px;
+  }
+  
+}
+
+@media (max-width: 767px) {
+  #preselection {
+    max-width: 100%;
+  }
+
+}
+.form-control{
+  border-radius: 4px;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+}

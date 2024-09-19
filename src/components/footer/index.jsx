@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           {/* Left Side: Logo and Text */}
-          <div className="col-md-8">
+          <div className="col-md-6">
             <img
               src="./img/logoblack.png"
               alt="Logo"
@@ -80,7 +80,7 @@ const Footer = () => {
               </li>
             </ul>
           </div> */}
-              <div className="col-4 col-md-5 px-3 mb-4">
+              <div className="col-6 col-md-5 px-3 mb-4">
                 <h6 className="text-theme">Contact Us</h6>
                 <ul className="list-unstyled">
                   <li>

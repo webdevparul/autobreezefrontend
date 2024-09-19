@@ -929,7 +929,7 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   }
 }
 .month-span{
-  right: 19%;
+  right: 100px;
   top: 32%;
   font-size: 24px;
   font-weight: 400;

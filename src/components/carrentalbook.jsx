@@ -66,39 +66,39 @@ const RentalBooking = ({ section, name, data }) => {
             role="group"
             aria-label="Basic outlined example"
           > */}
-            <button
-              type="button"
-              className={`rounded me-3  btn   text-dark ${
-                timePeriod === "daily"
-                  ? "btn-light"
-                  : "btn-outline-default text-white"
-              }`}
-              onClick={() => handleTimePeriod("daily")}
-            >
-              Daily
-            </button>
-            <button
-              type="button"
-              className={`rounded me-3 btn   text-dark ${
-                timePeriod === "weekly"
-                  ? "btn-light"
-                  : "btn-outline-default text-white"
-              }`}
-              onClick={() => handleTimePeriod("weekly")}
-            >
-              Weekly
-            </button>
-            <button
-              type="button"
-              className={`rounded  btn   text-dark ${
-                timePeriod === "months"
-                  ? "btn-light"
-                  : "btn-outline-default text-white"
-              }`}
-              onClick={() => handleTimePeriod("months")}
-            >
-              Monthly
-            </button>
+          <button
+            type="button"
+            className={`rounded me-3  btn   text-dark ${
+              timePeriod === "daily"
+                ? "btn-light"
+                : "btn-outline-default text-white"
+            }`}
+            onClick={() => handleTimePeriod("daily")}
+          >
+            Daily
+          </button>
+          <button
+            type="button"
+            className={`rounded me-3 btn   text-dark ${
+              timePeriod === "weekly"
+                ? "btn-light"
+                : "btn-outline-default text-white"
+            }`}
+            onClick={() => handleTimePeriod("weekly")}
+          >
+            Weekly
+          </button>
+          <button
+            type="button"
+            className={`rounded  btn   text-dark ${
+              timePeriod === "months"
+                ? "btn-light"
+                : "btn-outline-default text-white"
+            }`}
+            onClick={() => handleTimePeriod("months")}
+          >
+            Monthly
+          </button>
           {/* </div> */}
           <form onSubmit={handleSubmit} className="mb-0 mt-5">
             <div className="row mt-2 book-input ">
@@ -161,7 +161,14 @@ const RentalBooking = ({ section, name, data }) => {
               </div>
               <div className="col-12 col-md-6 mt-2 mt-md-0 d-none  d-md-block">
                 <div className="input-group delivery-group">
-                  <label htmlFor="" style={{left:"12px !important"}} className="label-p" id="deliverylabel">Delivery</label>
+                  <label
+                    htmlFor=""
+                    style={{ left: "12px !important" }}
+                    className="label-p"
+                    id="deliverylabel"
+                  >
+                    Delivery
+                  </label>
                   <select
                     className="form-select bg-dark text-theme "
                     aria-label="Default select example"
@@ -172,7 +179,11 @@ const RentalBooking = ({ section, name, data }) => {
                     <option value="">Delivery</option>
                   </select>
                   {/* <hr /> */}
-                  <label htmlFor="" className="adress-label mt-2 mt-md-0" style={{left:"12px !important"}}>
+                  <label
+                    htmlFor=""
+                    className="adress-label mt-2 mt-md-0"
+                    style={{ left: "12px !important" }}
+                  >
                     Address
                   </label>
                   <input
@@ -185,11 +196,18 @@ const RentalBooking = ({ section, name, data }) => {
               </div>
               <div className="d-block d-md-none d-lg-none">
                 <div className="col-6 mt-2 w-100">
-                <label htmlFor="" style={{left:"12px !important"}} id="deliverylabel">Delivery</label>
+                  <label
+                    htmlFor=""
+                    // style={{ left: "12px !important" }}
+                    id="deliverylabel"
+                  >
+                    Delivery
+                  </label>
                   <select
                     className="form-select bg-dark text-theme mt-2 "
                     aria-label="Default select example"
                     id="preselection"
+                    style={{width:"100%"}}
                     // value={selectedCar}
                     // onChange={(e) => setSelectedCar(e.target.value)}
                   >
@@ -197,7 +215,11 @@ const RentalBooking = ({ section, name, data }) => {
                   </select>
                 </div>
                 <div className="col-6 w-100 mt-2">
-                <label htmlFor=""  className="adress-label mt-2 mt-md-0 lable-p" style={{left:"12px !important"}}>
+                  <label
+                    htmlFor=""
+                    className="adress-label mt-2 mt-md-0 lable-p"
+                    style={{ left: "12px !important" }}
+                  >
                     Address
                   </label>
                   <input
@@ -273,15 +295,17 @@ const RentalBooking = ({ section, name, data }) => {
             </div> */}
 
             <div className="row pb-5">
-              <div className="col-12 text-end position-relative">
-                <span className=" me-5 text-white position-absolute month-span">
-                  
-                  <span className="text-capitalize font-Raleway"> {timeCount}{" "} {getPeriodName}</span>
+              <div className="col-12 d-flex justify-content-end position-relative">
+                <span className="me-5 text-white position-absolute month-span">
+                  <span className="text-capitalize font-Raleway">
+                    {timeCount} {getPeriodName}
+                  </span>
                 </span>
-                {/* <span className=" position-absolute aed-text text-white">1202 AED</span> */}
+
                 <button
-                  className="btn btn-light book-btn py-2 border-0 mt-3 ms-2"
+                  className="btn btn-light book-btn py-2 px-4 border-0 mt-3 ms-2"
                   type="submit"
+                  aria-label="Book Now"
                 >
                   Book Now
                 </button>
