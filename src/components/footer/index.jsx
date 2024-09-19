@@ -3,6 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-theme-dark text-white py-4">
+      
       <div className="container">
         <div className="row">
           {/* Left Side: Logo and Text */}
