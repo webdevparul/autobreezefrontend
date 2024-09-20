@@ -12,17 +12,17 @@ const RentalBooking = ({ section, name, data }) => {
   const [timeCount, settimeCount] = useState(0);
   const cars = data;
 
-  const getPeriodName=useMemo(()=>{
-      if(timePeriod === "daily"){
-        return timeCount >1?"Days":"day"
-      }
-      if(timePeriod === "months"){
-        return timeCount >1?"Months":"Month"
-      }
-      if(timePeriod === "weekly"){
-        return timeCount >1?"Weeks":"Week"
-      }
-  },[timePeriod,timeCount])
+  const getPeriodName = useMemo(() => {
+    if (timePeriod === "daily") {
+      return timeCount > 1 ? "Days" : "day";
+    }
+    if (timePeriod === "months") {
+      return timeCount > 1 ? "Months" : "Month";
+    }
+    if (timePeriod === "weekly") {
+      return timeCount > 1 ? "Weeks" : "Week";
+    }
+  }, [timePeriod, timeCount]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,40 +101,50 @@ const RentalBooking = ({ section, name, data }) => {
           </button>
           {/* </div> */}
           <form onSubmit={handleSubmit} className="mb-0 mt-5">
-            <div className="row mt-2 book-input ">
-              <div className="col-12 col-md-3">
-                {/* <label>Pickup Date: */}
-                <label htmlFor="">From</label>
+            <div className="row mt-2 pb-2 book-input">
+              <div className="col-12  col-md-3">
+                <label className="mb-1" htmlFor="pickupDate">
+                  From
+                </label>
                 <input
                   type="date"
+                  id="pickupDate"
                   className="form-control bg-dark text-theme"
                   value={pickupDate}
                   onChange={(e) => setPickupDate(e.target.value)}
                 />
-                {/* </label> */}
               </div>
-              <div className="col-12 col-md-3 mt-2 m-md-0">
-                <label htmlFor="">To</label>
+              <div className="col-12 col-md-3 pb-2  mt-md-0">
+                <label className="mb-1" htmlFor="dropOffDate">
+                  To
+                </label>
                 <input
                   type="date"
+                  id="dropOffDate"
                   className="form-control bg-dark text-theme"
                   value={dropOffDate}
                   onChange={(e) => handleDropOffDate(e)}
                 />
               </div>
-              <div className="col-12 col-md-3 mt-2 mt-md-0">
-                <label htmlFor="">Pickup Time</label>
+              <div className="col-12 col-md-3">
+                <label className="mb-1" htmlFor="pickupTime">
+                  Pickup Time
+                </label>
                 <input
                   type="time"
+                  id="pickupTime"
                   className="form-control bg-dark text-theme"
                   value={pickupTime}
                   onChange={(e) => setPickupTime(e.target.value)}
                 />
               </div>
-              <div className="col-12 col-md-3 mt-2 mt-md-0">
-                <label htmlFor="">Drop off Time</label>
+              <div className="col-12 col-md-3 ">
+                <label className="mb-1" htmlFor="dropOffTime">
+                  Drop off Time
+                </label>
                 <input
                   type="time"
+                  id="dropOffTime"
                   className="form-control bg-dark text-theme"
                   value={dropOffTime}
                   onChange={(e) => setDropOffTime(e.target.value)}
@@ -207,14 +217,14 @@ const RentalBooking = ({ section, name, data }) => {
                     className="form-select bg-dark text-theme mt-2 "
                     aria-label="Default select example"
                     id="preselection"
-                    style={{width:"100%"}}
+                    style={{ width: "100%" }}
                     // value={selectedCar}
                     // onChange={(e) => setSelectedCar(e.target.value)}
                   >
                     <option value="">Delivery</option>
                   </select>
                 </div>
-                <div className="col-6 w-100 mt-2">
+                <div className="col-6 w-100">
                   <label
                     htmlFor=""
                     className="adress-label mt-2 mt-md-0 lable-p"

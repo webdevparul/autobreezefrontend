@@ -41,3 +41,51 @@ select {
   appearance: none;
   padding: 10px;
 }
+/* Ensure flexbox behaves consistently */
+.nav-ul {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.nav-link {
+  white-space: nowrap; /* Ensure the text does not break into multiple lines */
+  word-break: keep-all; /* Prevents breaking words */
+}
+
+.navbar-brand img {
+  max-height: 50px; /* Ensure consistent logo size */
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.offcanvas {
+  width: 300px; /* Adjust the offcanvas width for better layout */
+}
+
+/* Media query to ensure responsiveness */
+@media (max-width: 992px) {
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .nav-link {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+input {
+  -webkit-appearance: none; /* Vendor prefix for Safari */
+  appearance: none;
+
+}
+label {
+  margin-top: 6px; /* Adjust this value as needed */
+  display: block; /* Ensures the label takes full width */
+}
+
+.text-theme{
+  margin-top: 10px;
+}
