@@ -1,30 +1,42 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { END_POINT } from "../config";
-import { useApi } from "./useapi.hook";
+import { API_RESPONSE_STATUS, ResponseModel, useApi } from "./useapi.hook";
 
 const useCarApi = (initialUrl) => {
-  
-  const { handleAxiosPostAsync } = useApi();
+  const { handleAxiosPostAsync, handleAxiosGetAsync } = useApi();
+  const responseModel = new ResponseModel();
   // const carUrl=
   const fetchCarData = async (id) => {
     try {
-      const response = await axios.get(`${END_POINT.CAR}/${id}`);
-      return response.data;
+      responseModel = await handleAxiosGetAsync(`${END_POINT.CAR}/${id}`);
+      if (
+        responseModel &&
+        responseModel.status === API_RESPONSE_STATUS.SUCCESS
+      ) {
+        return responseModel;
+      }
     } catch (err) {
-    } 
+      throw new Error(err);
+    }
   };
 
   const searchCar = async (data) => {
     try {
-      const response = await handleAxiosPostAsync(`${END_POINT.CAR}/search`);
-      return response;
-    } catch (error) {
-      throw new Error(error);
+      responseModel = await handleAxiosPostAsync(
+        data,
+        `${END_POINT.CAR}/search`
+      );
+      if (
+        responseModel &&
+        responseModel.status === API_RESPONSE_STATUS.SUCCESS
+      ) {
+        return responseModel;
+      }
+    } catch (err) {
+      throw new Error(err);
     }
   };
-
-  
 
   return { fetchCarData, searchCar };
 };

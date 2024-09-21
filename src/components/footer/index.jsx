@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-theme-dark text-white py-4">
-      
+
       <div className="container">
         <div className="row">
           {/* Left Side: Logo and Text */}
@@ -34,7 +34,7 @@ const Footer = () => {
                     <a
                       href="#"
                       className="text-decoration-none d-block mb-2"
-                      style={{ color: "grey" }}
+                      style={{ Pcolor: "grey" }}
                     >
                       About Us
                     </a>
