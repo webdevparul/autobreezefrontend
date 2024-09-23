@@ -250,19 +250,128 @@ a:focus,
 }
 /* Header Section */
 .intro {
-  display: table;
+  position: relative;
   width: 100%;
-  padding: 0;
-  /* background: url(../img/landing/carimage.png) center center no-repeat; */
-  background-color: #e5e5e5;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
 }
-.intro .overlay {
-  background: rgba(0, 0, 0, 0.1);
+.overlay {
+  background: rgba(0, 0, 0, 0.4); /* Slight dark overlay for better text contrast */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
+.btn-style501 {
+  padding: 15px 30px;
+  background-color: #ff7f50;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  transition: background-color 0.3s ease-in-out;
+}
+/* Fleet Section */
+.fleet-section {
+  background-color: #f8f9fa;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Category Buttons */
+.category-btn {
+  border-radius: 50px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  color: black; /* Ensure the text is always black */
+}
+.btn-group>.btn-group:not(:first-child), .btn-group>:not(.btn-check:first-child)+.btn {
+  margin-left: -1px;
+  color: black;
+}
+.btn-group-vertical>.btn, .btn-group>.btn {
+  position: relative;
+  flex: 1 1 auto;
+  color: black;
+}
+.category-btn.active {
+  background-color: #343a40;
+  color: white;
+}
+
+.category-btn:hover {
+  background-color: black;
+  color: white;
+}
+
+/* View All Button */
+.view-all-btn {
+  border-radius: 30px;
+  /* padding: 10px 30px; */
+  background-color: #343a40;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #495057;
+  color: white;
+}
+
+/* Car Cards */
+.row .col-md-3 {
+  display: flex;
+  justify-content: center;
+}
+
+.row .col-md-3 .car-card {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.row .col-md-3 .car-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Text Styling */
+.text-theme {
+  color: #343a40;
+}
+
+.fw-semibold {
+  font-weight: 600;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .category-btn {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .view-all-btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+}
+
+.animation-div .animated-text {
+  font-size: 2rem;
+  font-weight: bold;
+  animation: fade-in 2s ease-in-out infinite;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.btn-style501:hover {
+  background-color: #ff6347;
+}
+
+/* Ensures the mouse icon stays at the bottom */
+
 /* .slider img{
   height: 120px;
   width: 200px;
@@ -281,9 +390,10 @@ a:focus,
   font-weight: 400 !important;
 }
 .mouse{
-  position: absolute;
-  bottom: 10%;
-  left: 8%;
+  margin-top: -60px;
+  /* position: absolute; */
+  /* bottom: 30px; */
+  /* left: 25%; */
 }
 .intro h1 span {
   font-weight: 800;
@@ -795,6 +905,17 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   padding-left: 120px;
   padding-right: 120px;
 }
+
+/* For smaller screens (mobile) */
+@media (max-width: 768px) {
+  .view-all-btn {
+    width: 100%; /* Full width */
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center; /* Ensure text is centered */
+  }
+}
+
 .accordion-button,
 .accordion-item {
   background-color: var(--main-dark) !important ;
