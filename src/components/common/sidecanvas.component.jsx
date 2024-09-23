@@ -49,6 +49,7 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
         <button
           type="button"
           className="btn-close"
+          onClick={handleClickToggle}
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         />
@@ -60,7 +61,7 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               <li className="canvas-li py-2 text-theme fs-4"> <a
                 // href="#whyus"
                 data-bs-dismiss="offcanvas"
-                onClick={() => handleClickLink(false, "aboutus")}
+                onClick={() => handleClickLink("aboutus")}
                 className={`cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
                 aria-current="page"
               >

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="container">
         <div className="row">
           {/* Left Side: Logo and Text */}
-          <div className="col-md-8">
+          <div className="col-md-6">
             <img
               src="./img/logoblack.png"
               alt="Logo"
@@ -31,13 +32,13 @@ const Footer = () => {
                 <h6 className="text-theme">Info</h6>
                 <ul className="list-unstyled">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to={"/aboutus"}
                       className="text-decoration-none d-block mb-2"
                       style={{ color: "grey" }}
                     >
                       About Us
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -80,7 +81,7 @@ const Footer = () => {
               </li>
             </ul>
           </div> */}
-              <div className="col-4 col-md-5 px-3 mb-4">
+              <div className="col-6 col-md-5 px-3 mb-4">
                 <h6 className="text-theme">Contact Us</h6>
                 <ul className="list-unstyled">
                   <li>
