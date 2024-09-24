@@ -61,13 +61,15 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               <li className="canvas-li py-2 text-theme fs-4"> <a
                 // href="#whyus"
                 data-bs-dismiss="offcanvas"
-                onClick={() => handleClickLink(false, "aboutus")}
+                onClick={() => handleClickLink( "aboutus")}
                 className={`cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
                 aria-current="page"
               >
                 About Us
               </a></li>
-              <li className="canvas-li py-2 text-theme fs-4" onClick={() => handleClickLink(false)}>
+              <li className="canvas-li py-2 text-theme fs-4" 
+              // onClick={() => handleClickLink(false)}
+              >
               <a
                 className={`nav-link active cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
                 href="#"
@@ -77,15 +79,17 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               </a>
               </li>
               <li className="canvas-li py-2 text-theme fs-4"
-              onClick={() => redirectPage("explorescar")}
+              // onClick={() => redirectPage("explorescar")}
               > <a
                 className={`nav-link active page-scroll cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
-                // href="#explorecar"
+                href="#explorecar"
                 data-bs-dismiss="offcanvas"
               >
                 Explore Cars
               </a></li>
-              <li className="canvas-li py-2 text-theme fs-4"  onClick={() => redirectPage("signin")} data-bs-dismiss="offcanvas">Sign in</li>
+              <li className="canvas-li py-2 text-theme fs-4" 
+              //  onClick={() => redirectPage("signin")} 
+               data-bs-dismiss="offcanvas">Sign in</li>
             </ul>
           </div>
         </div>

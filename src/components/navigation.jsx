@@ -324,6 +324,7 @@ export const Navigation = ({ page }) => {
           isOpen={isOpen}
           handleClickToggle={handleClickToggle}
           redirectPage={handleClickLink}
+          handleClickLink={handleClickLink}
         />
       </div>
     </>

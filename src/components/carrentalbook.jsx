@@ -1,15 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { calculateCounts } from "../utility";
+import { useNavigate } from "react-router-dom";
 
-const RentalBooking = ({ section, name, data }) => {
+const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
+  const isRedirectWhatsapp=page === "detail";
+  const navigate=useNavigate()
   const [pickupDate, setPickupDate] = useState("");
   const [dropOffDate, setDropOffDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropOffTime, setDropOffTime] = useState("");
-  const [selectedCar, setSelectedCar] = useState("");
+  const [selectedCar, setSelectedCar] = useState(9);
   const [insurance, setInsurance] = useState("");
   const [timePeriod, setTimePeriod] = useState("months");
   const [timeCount, setTimeCount] = useState(0);
+  const [delivery, setDelivery] = useState(1)
   const [address, setAddress] = useState("12/245, Al abad Plaza, Abu Dhabi");
 
   const cars = data;
@@ -35,9 +39,12 @@ const RentalBooking = ({ section, name, data }) => {
   }, [timePeriod, timeCount]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(
-      `Car: ${selectedCar}, Pickup: ${pickupDate} ${pickupTime}, Drop-off: ${dropOffDate} ${dropOffTime}, Insurance: ${insurance}`
-    );
+    // alert(
+    //   `Car: ${selectedCar}, Pickup: ${pickupDate} ${pickupTime}, Drop-off: ${dropOffDate} ${dropOffTime}, Insurance: ${insurance}`
+    // );
+
+    const state={car:selectedCar,from:pickupDate,to:dropOffDate,pickuptime:pickupTime,dropOffTime:dropOffTime,delivery:delivery,address:address,timePeriod:timePeriod}
+    navigate(`/${selectedCar}`, { state: state });
   };
 
   const handleTimePeriod = (time) => {
@@ -60,6 +67,24 @@ const RentalBooking = ({ section, name, data }) => {
     calculateTime(pickupDate, value, timePeriod);
   };
 
+  useEffect(() => {
+   if(rentalBookData){
+    const state={car:selectedCar,from:pickupDate,to:dropOffDate,pickuptime:pickupTime,dropOffTime:dropOffTime,delivery:delivery,address:address}
+
+    setPickupTime(rentalBookData.pickuptime)
+    setSelectedCar(rentalBookData.car)
+    setAddress(rentalBookData.address)
+    setDelivery(rentalBookData.delivery)
+    setDropOffDate(rentalBookData.to)
+    setPickupDate(rentalBookData.from)
+    setDropOffTime(rentalBookData.dropOffTime)
+    setTimePeriod(rentalBookData.timePeriod)
+    if(rentalBookData.from){
+      calculateTime(rentalBookData.from, rentalBookData.to, rentalBookData.timePeriod);
+    }
+   }
+  }, [rentalBookData])
+  
   return (
     <div className="bg-dark-blue rental-book-section pb-4">
       {section !== "detail" && (
@@ -106,7 +131,7 @@ const RentalBooking = ({ section, name, data }) => {
             Monthly
           </button>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div style={styles.bookNowForm}>
               <div style={styles.formGroup}>
                 <label htmlFor="pickupDate">From</label>
@@ -125,7 +150,7 @@ const RentalBooking = ({ section, name, data }) => {
                   type="date"
                   id="dropOffDate"
                   value={dropOffDate}
-                  onChange={(e) => setDropOffDate(e.target.value)}
+                  onChange={handleDropOffDate}
                   style={styles.input}
                 />
               </div>
@@ -162,16 +187,20 @@ const RentalBooking = ({ section, name, data }) => {
                   onChange={(e) => setSelectedCar(e.target.value)}
                   style={styles.input}
                 >
-                  <option value="BMW X5">BMW X5</option>
-                  <option value="Audi Q7">Audi Q7</option>
+                  {carData?.map((car,index)=>{
+                    return <option value={car?.id}>{car?.title}</option>
+                  })}
                   {/* Add more options here */}
                 </select>
               </div>
               <div style={styles.formGroup}>
                 <label htmlFor="delivery">Delivery</label>
-                <select id="delivery" style={styles.input}>
-                  <option value="Self Pickup">Self Pickup</option>
-                  <option value="Home Delivery">Home Delivery</option>
+                <select id="delivery" style={styles.input}
+                 value={delivery}
+                 onChange={(e) => setDelivery(+e.target.value)}
+                >
+                  <option value={1}>Self Pickup</option>
+                  <option value={2}>Home Delivery</option>
                 </select>
               </div>
 
@@ -195,7 +224,9 @@ const RentalBooking = ({ section, name, data }) => {
                     {timeCount} {getPeriodName}
                   </span>
                 </span>
-                <a
+                {
+                  isRedirectWhatsapp?
+                  <a
                   href="https://wa.me/971527074847/?text=Your booking done for car rental."
                   style={{
                     backgroundColor: "white",
@@ -208,7 +239,22 @@ const RentalBooking = ({ section, name, data }) => {
                   aria-label="Book Now"
                 >
                   Book Now
-                </a>
+                </a>:
+                <button
+                style={{
+                  backgroundColor: "white",
+                  color: "black",
+                  borderRadius: "10px",
+                  textDecoration:"none"
+                }}
+                className=" book-btn py-2 px-4 border-0 mt-3 ms-2"
+                type="submit"
+                aria-label="Book Now"
+              >
+                Book Now
+              </button>
+                }
+                
               </div>
             </div>
           </form>
