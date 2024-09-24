@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
   // const isWhite = page === "detail";
 //   const [isOpen, setisOpen] = useState(false);
+
   const navigate = useNavigate();
   const handleClickLogo=()=>{
     handleClickToggle()
@@ -46,10 +47,9 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
             height={50}
           />
         </a>
-        <button
+        <button onClick={handleClickLogo}
           type="button"
           className="btn-close"
-          onClick={handleClickToggle}
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         />
@@ -61,7 +61,7 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               <li className="canvas-li py-2 text-theme fs-4"> <a
                 // href="#whyus"
                 data-bs-dismiss="offcanvas"
-                onClick={() => handleClickLink("aboutus")}
+                onClick={() => handleClickLink(false, "aboutus")}
                 className={`cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
                 aria-current="page"
               >

@@ -278,7 +278,7 @@ export const Navigation = ({ page }) => {
               </li>
               <li className="nav-item">
                 <a
-                  onClick={() => handleClickLink("explorecar")}
+                  // onClick={() => handleClickLink("explorecar")}
                   className={`nav-link active page-scroll ${
                     isWhite ? "text-theme" : "text-white"
                   }`}
@@ -296,7 +296,7 @@ export const Navigation = ({ page }) => {
               className={`btn ${
                 isWhite ? "btn-outline-dark" : "btn-outline-light"
               }`}
-              onClick={() => handleClickLink("signin")}
+              // onClick={() => handleClickLink("signin")}
             >
               Sign In
             </button>
@@ -312,12 +312,18 @@ export const Navigation = ({ page }) => {
         aria-labelledby="offcanvasExampleLabel"
         style={{ visibility: isOpen ? "visible" : "hidden" }}
       >
+        {/* Cross/Close Button inside the OffCanvas */}
+        {/* <button
+          type="button"
+          className="btn-close text-reset"
+          onClick={handleClickToggle}
+          aria-label="Close"
+        ></button> */}
 
         <OffCanvas
           isOpen={isOpen}
           handleClickToggle={handleClickToggle}
           redirectPage={handleClickLink}
-          handleClickLink={handleClickLink}
         />
       </div>
     </>

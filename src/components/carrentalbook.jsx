@@ -33,7 +33,6 @@ const RentalBooking = ({ section, name, data }) => {
       return timeCount > 1 ? "Weeks" : "Week";
     }
   }, [timePeriod, timeCount]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(
@@ -196,14 +195,20 @@ const RentalBooking = ({ section, name, data }) => {
                     {timeCount} {getPeriodName}
                   </span>
                 </span>
-                <button
-                  style={{ backgroundColor: "white", color: "black" }}
+                <a
+                  href="https://wa.me/971527074847/?text=Your booking done for car rental."
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "10px",
+                    textDecoration:"none"
+                  }}
                   className=" book-btn py-2 px-4 border-0 mt-3 ms-2"
                   type="submit"
                   aria-label="Book Now"
                 >
                   Book Now
-                </button>
+                </a>
               </div>
             </div>
           </form>

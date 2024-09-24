@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -32,13 +31,13 @@ const Footer = () => {
                 <h6 className="text-theme">Info</h6>
                 <ul className="list-unstyled">
                   <li>
-                    <Link
-                      to={"/aboutus"}
+                    <a
+                      href="#"
                       className="text-decoration-none d-block mb-2"
                       style={{ color: "grey" }}
                     >
                       About Us
-                    </Link>
+                    </a>
                   </li>
                   <li>
                     <a

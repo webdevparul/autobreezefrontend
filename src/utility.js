@@ -6,6 +6,24 @@ import {
   format,
 } from "date-fns";
 
+
+
+
+
+  export class ResponseModel {
+    // constructor(responseType:){
+
+    // }
+     result
+    constructor(data){
+        this.result=data
+    }
+    status = 0;
+    message = "";
+}
+
+
+
 export function calculateCounts(startDate, endDate) {
   // Ensure startDate is before endDate
   if (startDate > endDate) {
@@ -75,17 +93,6 @@ export const capacity = [
   },
 ];
 
-export class ResponseModel {
-  // constructor(responseType:){
-
-  // }
-  result;
-  constructor(data) {
-    this.result = data;
-  }
-  status = 0;
-  message = "";
-}
 
 export const profileSectionNames = [
   {

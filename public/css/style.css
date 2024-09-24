@@ -307,7 +307,7 @@ a:focus,
 /* View All Button */
 .view-all-btn {
   border-radius: 30px;
-  padding: 10px 30px;
+  /* padding: 10px 30px; */
   background-color: #343a40;
   color: white;
   transition: background-color 0.3s ease;
@@ -390,9 +390,10 @@ a:focus,
   font-weight: 400 !important;
 }
 .mouse{
-  position: absolute;
-  bottom: 10%;
-  left: 8%;
+  margin-top: -60px;
+  /* position: absolute; */
+  /* bottom: 30px; */
+  /* left: 25%; */
 }
 .intro h1 span {
   font-weight: 800;
@@ -904,6 +905,17 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   padding-left: 120px;
   padding-right: 120px;
 }
+
+/* For smaller screens (mobile) */
+@media (max-width: 768px) {
+  .view-all-btn {
+    width: 100%; /* Full width */
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center; /* Ensure text is centered */
+  }
+}
+
 .accordion-button,
 .accordion-item {
   background-color: var(--main-dark) !important ;
@@ -1058,15 +1070,6 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   color: #000;
 }
 
-.profile-form .row{
-  margin-bottom: 24px !important;
-}
-.rounded-img-div {
-  height: 184px;
-  width: 184px;
-  background-color: lightgray; /* Just for visibility */
-  border-radius: 50%;
-}
 
 
 @media only screen and (max-width: 600px) {
@@ -1163,13 +1166,5 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   
   100% {
     left: -100px;    
-  }
-}
-
-
-@media all and (min-width: 1100px) and (max-width: 1405px) {
-  .mouse{
-    bottom: 3% !important;
-    left: 1% !important;
   }
 }

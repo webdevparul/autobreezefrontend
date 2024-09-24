@@ -23,7 +23,6 @@ import ExploreCars from "./pages/explorecars";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import AboutUs from "./pages/aboutus";
-import ProfilePage from "./pages/profile";
 // import CarRentalBooking from "./components/CarRentalBooking";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -64,7 +63,6 @@ const App = () => {
       <Route path="/signin" element={<SignIn  data={landingPageData.car}/>} />
       <Route path="/signup" element={<SignUp ></SignUp>} />
       <Route path="/aboutus" element={<AboutUs/>} />
-      <Route path="/profile" element={<ProfilePage/>} />
 
       {/* <CarRentalBooking/> */}
       {/* <Gallery data={landingPageData.Gallery} /> */}
