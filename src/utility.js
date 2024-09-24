@@ -6,6 +6,24 @@ import {
   format,
 } from "date-fns";
 
+
+
+
+
+  export class ResponseModel {
+    // constructor(responseType:){
+
+    // }
+     result
+    constructor(data){
+        this.result=data
+    }
+    status = 0;
+    message = "";
+}
+
+
+
 export function calculateCounts(startDate, endDate) {
   // Ensure startDate is before endDate
   if (startDate > endDate) {
@@ -57,35 +75,36 @@ export const categories = [
 ];
 
 export const capacity = [
-    {
-        capacity: 2,
-      id: 1,
-    },
-    {
-        capacity: 4,
-      id: 2,
-    },
-    {
-        capacity: 6,
-      id: 3,
-    },
-    {
-      capacity: 6,
-      id: 4,
-    }
-  ];
+  {
+    capacity: 2,
+    id: 1,
+  },
+  {
+    capacity: 4,
+    id: 2,
+  },
+  {
+    capacity: 6,
+    id: 3,
+  },
+  {
+    capacity: 6,
+    id: 4,
+  },
+];
 
 
-  export class ResponseModel {
-    // constructor(responseType:){
-
-    // }
-     result
-    constructor(data){
-        this.result=data
-    }
-    status = 0;
-    message = "";
-}
-
-
+export const profileSectionNames = [
+  {
+    name: "Profile",
+    value: "profile",
+  },
+  {
+    name: "Live Bookings",
+    value: "livebooking",
+  },
+  {
+    name: "Booking History",
+    value: "bookinghistory",
+  },
+];
