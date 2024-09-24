@@ -79,13 +79,90 @@ select {
 input {
   -webkit-appearance: none; /* Vendor prefix for Safari */
   appearance: none;
-
 }
-label {
-  margin-top: 6px; /* Adjust this value as needed */
-  display: block; /* Ensures the label takes full width */
+/* Container Styling */
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom, #004d80, #005e99); /* Background */
+  padding: 20px;
+  color: white;
+  /* min-height: 100vh; */
 }
 
-.text-theme{
-  margin-top: 10px;
+h1 {
+  margin-bottom: 20px;
+}
+/* Rental Type Buttons */
+.rental-type {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.rental-type button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.rental-type button.active {
+  background-color: white;
+  color: #005e99;
+}
+
+/* Booking Form */
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  /* background-color: white; */
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .booking-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+button[type="submit"] {
+  background-color: #005e99;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #004d80;
+}
+.title_lable{
+  color: white;
 }

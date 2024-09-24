@@ -11,7 +11,7 @@ const AboutUs = () => {
          <div className="row">
             <div className="col-12">
                 <div className="about-img w-100 pt-5">
-                    <img src="./img/aboutcar.png" className='w-100 img-fluid' alt="" />
+                    <img src="./img/aboutcar.jpg" className='w-100 img-fluid' alt="" />
                 </div>
             </div>
             <div className="col-12">

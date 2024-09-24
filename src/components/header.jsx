@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 export const Header = (props) => {
   const [count, setCount] = useState(0);
-  console.log(props, "this is props");
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCount((prevCount) => (prevCount < 2 ? prevCount + 1 : 0));
@@ -13,24 +12,13 @@ export const Header = (props) => {
   }, []);
   return (
     <header id="header">
-      {count === 0 && <ChildHeader count="0" />}
-      {count === 1 && <ChildHeader count="1" />}
-      {count === 2 && <ChildHeader count="2" />}
+      {count === 0 && <ChildHeader count="0" carText="Affordable" />}
+      {count === 1 && <ChildHeader count="1" carText="Reliable" />}
+      {count === 2 && <ChildHeader count="2" carText="Flexible" />}
     </header>
   );
 };
 const ChildHeader = (props) => {
-  const [count, setCount] = useState(0);
-  console.log(props, "this is props");
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCount((prevCount) => (prevCount < 2 ? prevCount + 1 : 0));
-    }, 2000);
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []);
   return (
     <>
       <div
@@ -59,9 +47,7 @@ const ChildHeader = (props) => {
                     style={{ letterSpacing: "3px" }}
                     className="text-animate  animated-text text-start h1-text-intro text-capitalize text-white mb-3 h2-text-intro"
                   >
-                    {count === 0 && "Affordable"}
-                    {count === 1 && "Reliable"}
-                    {count === 2 && "Flexible"}
+                    {props.carText}
                   </div>
                 </div>
 
@@ -77,12 +63,11 @@ const ChildHeader = (props) => {
                   </a>
                 </div>
               </div>
-                <span class="mouse">
-            <img src="./img/mouse.png" alt="Scroll icon" />
-          </span>
+              <span class="mouse">
+                <img src="./img/mouse.png" alt="Scroll icon" />
+              </span>
             </div>
           </div>
-          
         </div>
       </div>
     </>

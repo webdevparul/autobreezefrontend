@@ -34,7 +34,7 @@
 //   };
 
 //   return (
-    
+
 //     // <nav id="menu" className="navbar navbar-default navbar-fixed-top ">
 //     //   <div className="container">
 //     //     <div className="navbar-header">
@@ -200,7 +200,6 @@
 //   );
 // };
 
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OffCanvas } from "./common/sidecanvas.component";
@@ -210,10 +209,12 @@ export const Navigation = ({ page }) => {
   const [isOpen, setisOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Toggles the offcanvas visibility
   const handleClickToggle = () => {
     setisOpen(!isOpen);
   };
 
+  // Closes offcanvas and navigates to a path
   const handleClickLink = (path) => {
     setisOpen(false);
     navigate(`/${path}`);
@@ -224,46 +225,42 @@ export const Navigation = ({ page }) => {
       <nav
         className={`navbar navbar-expand-lg navbar-default fixed-top py-4 ${
           isWhite ? "bg-white" : ""
-        } `}
+        }`}
         id="menu"
       >
-        <div className="container-fluid">
-          <button
-            className={`navbar-toggler btn-light`}
-            onClick={handleClickToggle}
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#offcanvasExample"
-            aria-controls="offcanvasExample"
-            aria-expanded={isOpen ? "true" : "false"}
-            aria-label="Toggle navigation"
-          >
-            <span className="fs-4">
-              <i
-                className={`bi bi-list ${
-                  isWhite ? "text-theme" : "text-white"
-                }`}
-              ></i>
-            </span>
-          </button>
+        <div className="container-fluid d-flex justify-content-between align-items-center">
+          {/* Left side: Logo */}
           <a
             className="navbar-brand pointer-cursor"
             onClick={() => navigate("/")}
           >
             <img
               src={`./img/${isWhite ? "logoblue.png" : "logo.png"}`}
-              alt=""
+              alt="Logo"
               height={50}
             />
           </a>
 
-          <div className="collapse navbar-collapse" id="navbarText">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex justify-content-evenly nav-ul">
+          {/* Mobile Toggle Button */}
+          <button
+            className={`navbar-toggler ${isWhite ? "navbar-light" : "navbar-dark"}`}
+            type="button"
+            onClick={handleClickToggle}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          {/* Middle: Navigation Links */}
+          <div
+            className="collapse navbar-collapse justify-content-center"
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav mb-2 mb-lg-0 d-flex justify-content-evenly">
               <li className="nav-item">
                 <a
                   onClick={() => handleClickLink("aboutus")}
                   className={`nav-link active page-scroll ${
-                    isWhite ? "text-theme" : ""
+                    isWhite ? "text-theme" : "text-white"
                   }`}
                 >
                   About Us
@@ -271,7 +268,9 @@ export const Navigation = ({ page }) => {
               </li>
               <li className="nav-item">
                 <a
-                  className={`nav-link active ${isWhite ? "text-theme" : ""}`}
+                  className={`nav-link active ${
+                    isWhite ? "text-theme" : "text-white"
+                  }`}
                   href="#"
                 >
                   Terms of Use
@@ -279,38 +278,48 @@ export const Navigation = ({ page }) => {
               </li>
               <li className="nav-item">
                 <a
-                  onClick={() => handleClickLink("explorecar")}
+                  // onClick={() => handleClickLink("explorecar")}
                   className={`nav-link active page-scroll ${
-                    isWhite ? "text-theme" : ""
+                    isWhite ? "text-theme" : "text-white"
                   }`}
                 >
                   Explore Cars
                 </a>
               </li>
             </ul>
+          </div>
 
-            <div className="navbar-text text-center">
-              <button
-                type="button"
-                className={`btn ${
-                  isWhite ? "btn-outline-dark" : "btn-outline-light"
-                } me-5`}
-                onClick={() => handleClickLink("signin")}
-              >
-                Sign In
-              </button>
-            </div>
+          {/* Right side: Sign In button */}
+          <div className="navbar-text text-end d-none d-lg-block">
+            <button
+              type="button"
+              className={`btn ${
+                isWhite ? "btn-outline-dark" : "btn-outline-light"
+              }`}
+              // onClick={() => handleClickLink("signin")}
+            >
+              Sign In
+            </button>
           </div>
         </div>
       </nav>
 
       {/* OffCanvas Component */}
       <div
-        className="offcanvas offcanvas-start"
+        className={`offcanvas offcanvas-start ${isOpen ? "show" : ""}`}
         tabIndex={-1}
         id="offcanvasExample"
         aria-labelledby="offcanvasExampleLabel"
+        style={{ visibility: isOpen ? "visible" : "hidden" }}
       >
+        {/* Cross/Close Button inside the OffCanvas */}
+        {/* <button
+          type="button"
+          className="btn-close text-reset"
+          onClick={handleClickToggle}
+          aria-label="Close"
+        ></button> */}
+
         <OffCanvas
           isOpen={isOpen}
           handleClickToggle={handleClickToggle}
