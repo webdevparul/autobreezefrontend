@@ -2,27 +2,39 @@ import React, { useEffect, useState } from "react";
 import { Navigation } from "../components/navigation";
 import Footer from "../components/footer";
 import Faq from "../components/faq";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Breadcrumb from "../components/common/bredcum.component";
 import RentalBooking from "../components/carrentalbook";
 import KeyFeatures from "../components/cardetails/keyfeature.component";
 import useCarApi from "../api/usecarapi.hook";
 const CardDetail = ({ faq, data }) => {
   const { slug } = useParams();
+  const [carData, setcarData] = useState(data)
   const id = +slug;
   const { fetchCarData } = useCarApi();
+  const [rentalBookData, setrentalBookData] = useState({})
   const [carDetail, setcarDetail] = useState(
     data?.find((item) => item?.id === id)
   );
-  console.log(carDetail);
+  const {state} = useLocation();
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   
   useEffect(() => {
     // fetchCarDetail();
     setcarDetail(data?.find((item) => item?.id === id))
   }, [slug,data]);
+
+  useEffect(() => {
+    setcarData(data)
+    if(state){
+      setrentalBookData(state)
+    }
+  }, [data,state])
+  
 
   const [imageName, setimageName] = useState("")
   const [count, setcount] = useState(0)
@@ -55,7 +67,7 @@ const CardDetail = ({ faq, data }) => {
   async function fetchCarDetail() {
     try {
       const data = await fetchCarData(1);
-      console.log(data);
+      // console.log(data);
     } catch (error) {}
   }
   
@@ -68,7 +80,7 @@ const CardDetail = ({ faq, data }) => {
           <img src={`./img/detailimage${1}.png`} className="w-100" alt="" />
         </div>
       </div>
-      <RentalBooking section="detail" name={carDetail?.title} />
+      <RentalBooking section="detail" name={carDetail?.title}  carData={carData} page={"detail"} rentalBookData={rentalBookData}/>
       <div className="detail-section">
         <div className="container py-5">
           <div className="row">
