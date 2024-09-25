@@ -52,6 +52,13 @@ select {
   white-space: nowrap; /* Ensure the text does not break into multiple lines */
   word-break: keep-all; /* Prevents breaking words */
 }
+.fw-bold {
+  font-weight: 700; /* Adjust as necessary for extra boldness */
+}
+.custom-bullets {
+  list-style-type: disc; /* or circle, square, etc. */
+  padding-left: 20px; /* Add padding for indentation */
+}
 
 .navbar-brand img {
   max-height: 50px; /* Ensure consistent logo size */

@@ -84,7 +84,18 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
     }
    }
   }, [rentalBookData])
-  
+  const generateTimeSlots = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const formattedTime = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+        times.push(formattedTime);
+      }
+    }
+    return times;
+  };
+
+  const timeSlots = generateTimeSlots();
   return (
     <div className="bg-dark-blue rental-book-section pb-4">
       {section !== "detail" && (
@@ -167,15 +178,21 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
               </div>
 
               <div style={styles.formGroup}>
-                <label htmlFor="dropOffTime">Drop Off Time</label>
-                <input
-                  type="time"
-                  id="dropOffTime"
-                  value={dropOffTime}
-                  onChange={(e) => setDropOffTime(e.target.value)}
-                  style={styles.input}
-                />
-              </div>
+      <label htmlFor="dropOffTime">Drop Off Time</label>
+      <select
+        id="dropOffTime"
+        value={dropOffTime}
+        onChange={(e) => setDropOffTime(e.target.value)}
+        style={styles.input}
+      >
+        <option value="">Select Time</option>
+        {timeSlots.map((time, index) => (
+          <option key={index} value={time}>
+            {time}
+          </option>
+        ))}
+      </select>
+    </div>
             </div>
 
             <div style={styles.bookNowForm}>
@@ -185,12 +202,12 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
                   id="selectCar"
                   value={selectedCar}
                   onChange={(e) => setSelectedCar(e.target.value)}
-                  style={styles.input}
+                  style={styles.selectinput}
                 >
                   {carData?.map((car,index)=>{
-                    return <option value={car?.id}>{car?.title}</option>
+                    return <option  value={car?.id}>{car?.title}</option>
                   })}
-                  {/* Add more options here */}
+              
                 </select>
               </div>
               <div style={styles.formGroup}>
@@ -227,7 +244,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
                 {
                   isRedirectWhatsapp?
                   <a
-                  href="https://wa.me/971527074847/?text=Your booking done for car rental."
+                  href="https://wa.me/971527074847/?text=Your ."
                   style={{
                     backgroundColor: "white",
                     color: "black",
@@ -327,6 +344,26 @@ const styles = {
     gap: "20px",
     marginBottom: "20px",
   },
+  selectinput: {
+    width: "100%",
+    padding: "10px",
+    marginTop: "5px",
+    border: "1px solid #ccc",
+    borderRadius: "4px",
+    backgroundColor: "#ffffff",  // White background for the select input
+    color: "#000000",            // Black text
+    backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" width="18px" height="18px"><path d="M7 10l5 5 5-5z" /></svg>')`,  // Black arrow icon
+    backgroundPosition: "right 10px center",  // Align the arrow icon to the right
+    backgroundRepeat: "no-repeat",  // Prevent the image from repeating
+    backgroundSize: "18px 18px",  // Adjust the size of the icon so it fits well
+    appearance: "none",  // Removes the default select arrow
+    WebkitAppearance: "none",  // Support for Safari
+    MozAppearance: "none",     // Support for Firefox
+  },
+  
+  
+
+
 };
 export default RentalBooking;
 

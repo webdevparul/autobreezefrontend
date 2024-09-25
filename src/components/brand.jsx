@@ -41,7 +41,7 @@ const Brand = () => {
         <div className="px-4">
       <div className="row parent">
       {/* <Carousel responsive={responsive} infinite={true} autoPlay={true} co autoPlaySpeed={100} arrows={false} transitionDuration={0.5} > */}
-      <Marquee speed={300}>
+      <Marquee speed={150}>
 
         <div className="col slider"><img src="./img/brand/hyundai.png" className="img-fluid w-75"  alt="" /></div>
         <div className="col slider"><img src="./img/brand/honda.png" className="img-fluid w-75"  alt="" /></div>

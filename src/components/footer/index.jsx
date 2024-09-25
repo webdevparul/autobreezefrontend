@@ -15,12 +15,12 @@ const Footer = () => {
               style={{ height: 50 }}
             />
             <div>
-              <p className="mb-4 mb-md-0" style={{ color: "grey" }}>
+              {/* <p className="mb-4 mb-md-0" style={{ color: "grey" }}>
                 The Autobreeze fleet is strictly non-smoking. <br />
                 Renters and their passengers are not permitted to
                 <br />
                 smoke in any Autobreeze car.
-              </p>
+              </p> */}
             </div>
             <div></div>
           </div>
