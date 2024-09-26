@@ -59,7 +59,7 @@ const App = () => {
         }
       />
       <Route path="/:slug" element={<CardDetail faq={landingPageData.faq} data={landingPageData.car}/>} />
-      <Route path="/explorescar" element={<ExploreCars  data={landingPageData.car}/>} />
+      <Route path="/explorecars" element={<ExploreCars  data={landingPageData.car}/>} />
       <Route path="/signin" element={<SignIn  data={landingPageData.car}/>} />
       <Route path="/signup" element={<SignUp ></SignUp>} />
       <Route path="/aboutus" element={<AboutUs/>} />

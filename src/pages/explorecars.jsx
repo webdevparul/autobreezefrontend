@@ -9,18 +9,30 @@ import CheckBoxComponent from "../components/common/checkbox.component";
 import ModalComponent from "../components/common/modal.component";
 
 const ExploreCars = ({ data }) => {
+  const carInitialData=data
   const [carData, setcarData] = useState(data);
   useEffect(() => {
     setcarData(data);
   }, [data]);
+
+  
   const [filterData, setfilterData] = useState({
     categories: [],
     capacities: [],
     searchText: "",
   });
 
-  const handleChangeCheckbox = (e) => {
+  const filterDataByCat=(items,selectedCategories)=>{
     debugger
+    const selectedCategory=selectedCategories.map((item)=>item.toLowerCase().trim())
+    const filteredData=items.filter((item)=>selectedCategory.includes(item.category))
+    setcarData(filteredData)
+    if(selectedCategories.length===0){
+      setcarData(data)
+    }
+  }
+
+  const handleChangeCheckbox = (e) => {
     const { value, name, checked } = e.target;
     console.log(filterData[name]);
     if (filterData[name].includes(value)) {
@@ -29,12 +41,14 @@ const ExploreCars = ({ data }) => {
         ...pre,
         [name]:data
       }));
+      filterDataByCat(carInitialData,data)
     } else {
       const data=[...filterData[name],value]
       setfilterData((pre) => ({
         ...pre,
         [name]:  data
       }));
+      filterDataByCat(carInitialData,data)
     }
   };
 
@@ -55,7 +69,7 @@ const ExploreCars = ({ data }) => {
   return (
     <div className="explorecar-section  bg-theme-gray">
       <Navigation />
-      <Breadcrumb />
+      <Breadcrumb name={"explorecars"}/>
       <div className="row w-100">
         <div className="col-2 col-lg-2 col-md-2 d-none d-md-block  left-side bg-light-white  overflow-hidden">
           {/* <h1>test</h1> */}
