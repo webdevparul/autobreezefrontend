@@ -48,11 +48,13 @@ const Brand = () => {
         <div className="col slider"><img src="./img/brand/landrover.png" className="img-fluid w-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/jeep.png" className="img-fluid w-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/mer.png" className="img-fluid w-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/bmw.svg" className="img-fluid w-75 pe-5" alt="" /></div>
         <div className="col slider"><img src="./img/brand/hyundai.png" className="img-fluid w-75"  alt="" /></div>
         <div className="col slider"><img src="./img/brand/honda.png" className="img-fluid w-75"  alt="" /></div>
         <div className="col slider"><img src="./img/brand/landrover.png" className="img-fluid w-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/jeep.png" className="img-fluid w-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/mer.png" className="img-fluid w-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/bmw.svg" className="img-fluid w-75 pe-5" alt="" /></div>
         
         
         {/* </Carousel> */}
