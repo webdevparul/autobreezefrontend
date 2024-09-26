@@ -84,6 +84,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
     }
    }
   }, [rentalBookData])
+
   const generateTimeSlots = () => {
     const times = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -168,13 +169,26 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
 
               <div style={styles.formGroup}>
                 <label htmlFor="pickupTime">Pickup Time</label>
-                <input
+                {/* <input
                   type="time"
                   id="pickupTime"
                   value={pickupTime}
                   onChange={(e) => setPickupTime(e.target.value)}
                   style={styles.input}
-                />
+                /> */}
+                 <select
+        id="pickupTime"
+        value={dropOffTime}
+        onChange={(e) => setPickupTime(e.target.value)}
+        style={styles.input}
+      >
+        <option value="">Select Time</option>
+        {timeSlots.map((time, index) => (
+          <option key={index} value={time}>
+            {time}
+          </option>
+        ))}
+      </select>
               </div>
 
               <div style={styles.formGroup}>
@@ -244,7 +258,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
                 {
                   isRedirectWhatsapp?
                   <a
-                  href="https://wa.me/971527074847/?text=Your ."
+                  href="https://wa.me/971527074847/?text= "
                   style={{
                     backgroundColor: "white",
                     color: "black",

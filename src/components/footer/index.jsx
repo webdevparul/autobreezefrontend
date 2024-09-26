@@ -11,7 +11,7 @@ const Footer = () => {
             <img
               src="./img/logoblack.png"
               alt="Logo"
-              className="mb-2 footer-img"
+              className="mb-5  footer-img"
               style={{ height: 50 }}
             />
             <div>
