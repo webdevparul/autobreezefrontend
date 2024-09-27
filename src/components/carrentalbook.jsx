@@ -220,8 +220,8 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
   >
     {/* Default option to show "Select Car" */}
     
-    <option value="" disabled>Select Car</option>
     {/* Mapping carData to options */}
+    <option value="" disabled>Select Car</option>
     {carData?.map((car, index) => (
       <option key={index} value={car?.id}>
         {car?.title}
@@ -333,6 +333,7 @@ const styles = {
     borderRadius: "4px",
     backgroundColor: "#fff",
     color: "#000",
+    height:"50px"
   },
   unlimitedMilesGroup: {
     display: "flex",
