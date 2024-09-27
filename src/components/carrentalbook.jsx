@@ -210,20 +210,26 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
             </div>
 
             <div style={styles.bookNowForm}>
-              <div style={styles.formGroup}>
-                <label htmlFor="selectCar">Select Car</label>
-                <select
-                  id="selectCar"
-                  value={selectedCar}
-                  onChange={(e) => setSelectedCar(e.target.value)}
-                  style={styles.selectinput}
-                >
-                  {carData?.map((car,index)=>{
-                    return <option  value={car?.id}>{car?.title}</option>
-                  })}
-              
-                </select>
-              </div>
+            <div style={styles.formGroup}>
+  <label htmlFor="selectCar">Select Car</label>
+  <select
+    id="selectCar"
+    value={selectedCar}
+    onChange={(e) => setSelectedCar(e.target.value)}
+    style={styles.selectinput}
+  >
+    {/* Default option to show "Select Car" */}
+    
+    <option value="" disabled>Select Car</option>
+    {/* Mapping carData to options */}
+    {carData?.map((car, index) => (
+      <option key={index} value={car?.id}>
+        {car?.title}
+      </option>
+    ))}
+  </select>
+</div>
+
               <div style={styles.formGroup}>
                 <label htmlFor="delivery">Delivery</label>
                 <select id="delivery" style={styles.input}
