@@ -905,7 +905,15 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   padding-left: 120px;
   padding-right: 120px;
 }
-
+.profile-detail-section input{
+  border-color: #414141;
+}
+.profile-detail-section label{
+margin-bottom: 0px !important;
+}
+.invoice-btn-div{
+  width: 140px !important;
+}
 /* For smaller screens (mobile) */
 @media (max-width: 768px) {
   .view-all-btn {
@@ -1068,6 +1076,12 @@ background-image: linear-gradient(to right bottom, #052d3d, #03364a, #023f57, #0
   background-image: linear-gradient(to left bottom , #25779a, #004865, #023f57, #03364a, #052d3d);;
   background-position: right bottom;
   color: #000;
+}
+.guZdik{
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100px !important;
+  border: 2px dashed var(--text-theme) !important;
 }
 
 

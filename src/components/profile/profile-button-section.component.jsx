@@ -6,7 +6,7 @@ const ProfileButtonSection = ({handleChangeSection,sectionName}) => {
     <div className="col-12">
         {
             profileSectionNames.map((item)=>{
-               return <button className={`btn btn${sectionName===item.value?"":"-outline"}-dark me-2 px-5`} onClick={()=>handleChangeSection(item.value)}>{item.name}</button>
+               return <button className={`btn btn${sectionName===item.value?"":"-outline"}-dark me-2 btn-sm px-3 btn-md-lg px-md-5`} onClick={()=>handleChangeSection(item.value)}>{item.name}</button>
             })
         }
       
