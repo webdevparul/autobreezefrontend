@@ -7,13 +7,13 @@ import CarCardComponent from "../components/fleet/car-card.component";
 import { capacity, categories } from "../utility";
 import CheckBoxComponent from "../components/common/checkbox.component";
 import ModalComponent from "../components/common/modal.component";
+import { useDebounce } from "use-debounce";
 
 const ExploreCars = ({ data }) => {
   const carInitialData=data
   const [carData, setcarData] = useState(data);
-  useEffect(() => {
-    setcarData(data);
-  }, [data]);
+ 
+  
 
   
   const [filterData, setfilterData] = useState({
@@ -21,15 +21,36 @@ const ExploreCars = ({ data }) => {
     capacities: [],
     searchText: "",
   });
+  const [debouncedValue] = useDebounce(filterData.searchText, 1000);
 
-  const filterDataByCat=(items,selectedCategories)=>{
-    debugger
+  useEffect(() => {
+    setcarData(data);
+  }, [data]);
+
+  useEffect(() => {
+    //first filter by search
+    const searchData=debouncedValue !== "" ?filterByKeyword(carInitialData,debouncedValue):carInitialData;
+    //second filter by filter type
+    const filterByCatData=filterData.categories.length>0?filterDataByCat(searchData,filterData.categories):searchData
+    setcarData(filterByCatData)
+  }, [debouncedValue,filterData.capacities,filterData.categories])
+
+  function filterByKeyword(arr, keyword) {
+    const lowerKeyword = keyword.toLowerCase();
+    return arr.filter(obj => 
+      obj.title.toLowerCase().includes(lowerKeyword)
+    );
+  }
+  
+  
+  function filterDataByCat(items,selectedCategories){
     const selectedCategory=selectedCategories.map((item)=>item.toLowerCase().trim())
     const filteredData=items.filter((item)=>selectedCategory.includes(item.category))
-    setcarData(filteredData)
-    if(selectedCategories.length===0){
-      setcarData(data)
-    }
+    // setcarData(filteredData)
+    // if(selectedCategories.length===0){
+    //   setcarData(data)
+    // }
+    return filteredData;
   }
 
   const handleChangeCheckbox = (e) => {
@@ -41,20 +62,13 @@ const ExploreCars = ({ data }) => {
         ...pre,
         [name]:data
       }));
-      filterDataByCat(carInitialData,data)
     } else {
       const data=[...filterData[name],value]
       setfilterData((pre) => ({
         ...pre,
         [name]:  data
       }));
-      filterDataByCat(carInitialData,data)
     }
-  };
-
-  console.log(filterData);
-  const handleChangeType = (e) => {
-    const { value, name, checked } = e.target;
   };
 
   const handleChangeSearch=(e)=>{
