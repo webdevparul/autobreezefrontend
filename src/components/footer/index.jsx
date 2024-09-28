@@ -107,7 +107,7 @@ const Footer = () => {
                       className="text-decoration-none d-block mb-2"
                       style={{ color: "grey" }}
                     >
-                      906,Park&nbsp;Lane,&nbsp;Park&nbsp;Regis
+                      906,&nbsp;Park&nbsp;Lane,&nbsp;Park&nbsp;Regis
                       Business&nbsp;Bay,&nbsp;Dubai{" "}
                     </a>
                   </li>
