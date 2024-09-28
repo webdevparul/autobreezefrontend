@@ -27,7 +27,7 @@ function CarRentalBooking() {
       <form onSubmit={handleSubmit} className="car-rental-form">
         <div className="form-group">
           <label>Pickup Date:
-            <input type="date" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} />
+            <input  type="date" value={pickupDate} onChange={(e) => setPickupDate(e.target.value)} />
           </label>
         </div>
         <div className="form-group">

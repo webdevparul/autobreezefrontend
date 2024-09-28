@@ -17,7 +17,6 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
   const [address, setAddress] = useState("12/245, Al abad Plaza, Abu Dhabi");
 
   const cars = data;
-
   function calculateTime(startDate, endDate, timePeriod) {
     if (startDate !== "" && endDate !== "") {
       const count = calculateCounts(startDate, endDate);
