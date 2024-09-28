@@ -9,7 +9,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
   const [dropOffDate, setDropOffDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropOffTime, setDropOffTime] = useState("");
-  const [selectedCar, setSelectedCar] = useState(9);
+  const [selectedCar, setSelectedCar] = useState("");
   const [insurance, setInsurance] = useState("");
   const [timePeriod, setTimePeriod] = useState("months");
   const [timeCount, setTimeCount] = useState(0);
@@ -210,20 +210,26 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
             </div>
 
             <div style={styles.bookNowForm}>
-              <div style={styles.formGroup}>
-                <label htmlFor="selectCar">Select Car</label>
-                <select
-                  id="selectCar"
-                  value={selectedCar}
-                  onChange={(e) => setSelectedCar(e.target.value)}
-                  style={styles.selectinput}
-                >
-                  {carData?.map((car,index)=>{
-                    return <option  value={car?.id}>{car?.title}</option>
-                  })}
-              
-                </select>
-              </div>
+            <div style={styles.formGroup}>
+  <label htmlFor="selectCar">Select Car</label>
+  <select
+    id="selectCar"
+    value={selectedCar}
+    onChange={(e) => setSelectedCar(e.target.value)}
+    style={styles.selectinput}
+  >
+    {/* Default option to show "Select Car" */}
+    
+    <option value="" disabled>Select Car</option>
+    {/* Mapping carData to options */}
+    {carData?.map((car, index) => (
+      <option key={index} value={car?.id}>
+        {car?.title}
+      </option>
+    ))}
+  </select>
+</div>
+
               <div style={styles.formGroup}>
                 <label htmlFor="delivery">Delivery</label>
                 <select id="delivery" style={styles.input}
@@ -320,6 +326,7 @@ const styles = {
     minWidth: "200px",
   },
   input: {
+    height:"50px",
     width: "100%",
     padding: "10px",
     marginTop: "5px",
@@ -359,6 +366,7 @@ const styles = {
     marginBottom: "20px",
   },
   selectinput: {
+    height:"50px",
     width: "100%",
     padding: "10px",
     marginTop: "5px",

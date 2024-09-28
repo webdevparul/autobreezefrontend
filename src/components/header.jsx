@@ -53,7 +53,7 @@ const ChildHeader = (props) => {
 
                 <div className="text-start mt-4">
                   <a
-                    href="https://wa.me/971527074847/?text=Your ."
+                    href="https://wa.me/971527074847/?text="
                     title="Share on WhatsApp"
                     target="_blank"
                     rel="noreferrer"
