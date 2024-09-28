@@ -64,6 +64,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
   const [period, setPeriod] = useState("");
 
   const handleClickBookPeriod = (price, period) => {
+    debugger
     setPrice(price);
     setPeriod(period);
   };
@@ -88,7 +89,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
             {carDetail.bookTime.map((time, index) => (
               <div
                 key={index}
-                className={`price-card me-2 ${period === time.label ? "act" : ""}`}
+                className={`price-card me-2 ${price === time.price ? "act" : ""}`}
                 onClick={() => handleClickBookPeriod(time.price, time.label)}
               >
                 <h6>{time.label}</h6>
@@ -97,7 +98,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
             ))}
           </div>
           <button className="btn-style501 btn bg-dark-blue w-100 border-0 text-white mb-2 py-3 fs-6 mt-3" onClick={() => handleClickBook(carDetail?.id)}>
-            {period === "" ? "Book" : `Book for ${price} / ${period}`}
+            {period === "" ? "Book" : `Book for ${price}`}
           </button>
         </div>
       </div>

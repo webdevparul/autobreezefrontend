@@ -87,9 +87,9 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               >
                 Explore Cars
               </a></li>
-              <li className="canvas-li py-2 text-theme fs-4" 
+              {/* <li className="canvas-li py-2 text-theme fs-4" 
               //  onClick={() => redirectPage("signin")} 
-               data-bs-dismiss="offcanvas">Sign in</li>
+               data-bs-dismiss="offcanvas">Sign in</li> */}
             </ul>
           </div>
         </div>
