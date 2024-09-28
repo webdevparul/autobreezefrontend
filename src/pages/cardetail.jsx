@@ -7,6 +7,7 @@ import Breadcrumb from "../components/common/bredcum.component";
 import RentalBooking from "../components/carrentalbook";
 import KeyFeatures from "../components/cardetails/keyfeature.component";
 import useCarApi from "../api/usecarapi.hook";
+import { Head } from "../components/head";
 const CardDetail = ({ faq, data }) => {
   const { slug } = useParams();
   const [carData, setcarData] = useState(data)
@@ -75,11 +76,12 @@ const CardDetail = ({ faq, data }) => {
     <div>
       <Navigation page="detail"/>
       <Breadcrumb name={carDetail?.title} />
-      <div className="section">
+      {/* <div className="section">
         <div className="image w-100">
           <img src={`./img/detailimage${1}.png`} className="w-100" alt="" />
         </div>
-      </div>
+      </div> */}
+      <Head/>
       <RentalBooking section="detail" name={carDetail?.title}  carData={carData} page={"detail"} rentalBookData={rentalBookData}/>
       <div className="detail-section">
         <div className="container py-5">
