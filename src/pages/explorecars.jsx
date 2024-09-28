@@ -131,7 +131,7 @@ const ExploreCars = ({ data }) => {
           </div>
           <div className="d-block d-md-none px-3 pt-2">
             <button
-              className="btn btn-outline-dark"
+              className="btn btn-outline-dark px-4"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
             >
