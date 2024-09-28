@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import ProfileButtonSection from "../components/profile/profile-button-section.component";
 import ProfileSectionComponent from "../components/profile/profile-section.component";
 import LiveBookingSection from "../components/profile/live-booking-section";
+import BookingHistorySection from "../components/profile/booking-history-section.component";
 
 const ProfilePage = () => {
   const [sectionName, setSectionName] = useState("profile");
@@ -23,6 +24,7 @@ const ProfilePage = () => {
        {sectionName === "livebooking"&&
        <LiveBookingSection/>
        }
+       {sectionName === "bookinghistory"&&<BookingHistorySection/>}
       </div>
       <Footer />
     </>

@@ -20,6 +20,7 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       pinCode: "",
       dlNumber: "",
       passportNumber: "",
+      file:null
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("First Name is required"),
@@ -34,15 +35,20 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       pinCode: Yup.string().required("Pin Code is required"),
       dlNumber: Yup.string().required("DL Number is required"),
       passportNumber: Yup.string().required("Passport Number is required"),
+      // file: Yup.mixed().required("f"),
+
     }),
     onSubmit: (values) => {
+      debugger
       console.log("Form data", values);
     },
   });
 
   return (
     <div className="profile-detail-section mt-5 bg-white py-2 pb-3 mb-3 px-3">
-      <form className="profile-form" onSubmit={formik.handleSubmit}>
+      <form className="profile-form"
+       onSubmit={formik.handleSubmit}
+       >
         <div className="row pt-3 px-3">
           <div className="col-8 col-md-6">
             <h3 className="text-theme pt-2">Personal Details</h3>
@@ -53,7 +59,7 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
                 Edit detail
               </button>
             ) : (
-              <button className="btn btn-dark btn-sm btn-md-lg px-4">
+              <button className="btn btn-dark btn-sm btn-md-lg px-4" type="submit">
                 Save
               </button>
             )}
@@ -312,7 +318,7 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
                   name="file"
                   types={fileTypes}
                   className="w-100"
-                  onChange={(file) => formik.setFieldValue("file", file)}
+                  handleChange={(file) => formik.setFieldValue("file", file)}
                 />
               </div>
             </div>
