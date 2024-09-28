@@ -7,20 +7,53 @@ import CarCardComponent from "../components/fleet/car-card.component";
 import { capacity, categories } from "../utility";
 import CheckBoxComponent from "../components/common/checkbox.component";
 import ModalComponent from "../components/common/modal.component";
+import { useDebounce } from "use-debounce";
 
 const ExploreCars = ({ data }) => {
+  const carInitialData=data
   const [carData, setcarData] = useState(data);
-  useEffect(() => {
-    setcarData(data);
-  }, [data]);
+ 
+  
+
+  
   const [filterData, setfilterData] = useState({
     categories: [],
     capacities: [],
     searchText: "",
   });
+  const [debouncedValue] = useDebounce(filterData.searchText, 1000);
+
+  useEffect(() => {
+    setcarData(data);
+  }, [data]);
+
+  useEffect(() => {
+    //first filter by search
+    const searchData=debouncedValue !== "" ?filterByKeyword(carInitialData,debouncedValue):carInitialData;
+    //second filter by filter type
+    const filterByCatData=filterData.categories.length>0?filterDataByCat(searchData,filterData.categories):searchData
+    setcarData(filterByCatData)
+  }, [debouncedValue,filterData.capacities,filterData.categories])
+
+  function filterByKeyword(arr, keyword) {
+    const lowerKeyword = keyword.toLowerCase();
+    return arr.filter(obj => 
+      obj.title.toLowerCase().includes(lowerKeyword)
+    );
+  }
+  
+  
+  function filterDataByCat(items,selectedCategories){
+    const selectedCategory=selectedCategories.map((item)=>item.toLowerCase().trim())
+    const filteredData=items.filter((item)=>selectedCategory.includes(item.category))
+    // setcarData(filteredData)
+    // if(selectedCategories.length===0){
+    //   setcarData(data)
+    // }
+    return filteredData;
+  }
 
   const handleChangeCheckbox = (e) => {
-    debugger
     const { value, name, checked } = e.target;
     console.log(filterData[name]);
     if (filterData[name].includes(value)) {
@@ -38,11 +71,6 @@ const ExploreCars = ({ data }) => {
     }
   };
 
-  console.log(filterData);
-  const handleChangeType = (e) => {
-    const { value, name, checked } = e.target;
-  };
-
   const handleChangeSearch=(e)=>{
     const {name,value}=e.target
     setfilterData((pre)=>({
@@ -55,7 +83,7 @@ const ExploreCars = ({ data }) => {
   return (
     <div className="explorecar-section  bg-theme-gray">
       <Navigation />
-      <Breadcrumb />
+      <Breadcrumb name={"explorecars"}/>
       <div className="row w-100">
         <div className="col-2 col-lg-2 col-md-2 d-none d-md-block  left-side bg-light-white  overflow-hidden">
           {/* <h1>test</h1> */}
@@ -103,7 +131,7 @@ const ExploreCars = ({ data }) => {
           </div>
           <div className="d-block d-md-none px-3 pt-2">
             <button
-              className="btn btn-outline-dark"
+              className="btn btn-outline-dark px-4"
               data-bs-toggle="modal"
               data-bs-target="#staticBackdrop"
             >

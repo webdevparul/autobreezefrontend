@@ -4,6 +4,7 @@ import Breadcrumb from "../components/common/bredcum.component";
 import Footer from "../components/footer";
 import ProfileButtonSection from "../components/profile/profile-button-section.component";
 import ProfileSectionComponent from "../components/profile/profile-section.component";
+import LiveBookingSection from "../components/profile/live-booking-section";
 
 const ProfilePage = () => {
   const [sectionName, setSectionName] = useState("profile");
@@ -19,6 +20,9 @@ const ProfilePage = () => {
           <ProfileButtonSection handleChangeSection={handleChangeSection} sectionName={sectionName}/>
         </div>
        {sectionName === "profile"&&<ProfileSectionComponent/>}
+       {sectionName === "livebooking"&&
+       <LiveBookingSection/>
+       }
       </div>
       <Footer />
     </>
