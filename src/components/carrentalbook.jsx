@@ -9,7 +9,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
   const [dropOffDate, setDropOffDate] = useState("");
   const [pickupTime, setPickupTime] = useState("");
   const [dropOffTime, setDropOffTime] = useState("");
-  const [selectedCar, setSelectedCar] = useState(9);
+  const [selectedCar, setSelectedCar] = useState("");
   const [insurance, setInsurance] = useState("");
   const [timePeriod, setTimePeriod] = useState("months");
   const [timeCount, setTimeCount] = useState(0);
@@ -326,6 +326,7 @@ const styles = {
     minWidth: "200px",
   },
   input: {
+    height:"50px",
     width: "100%",
     padding: "10px",
     marginTop: "5px",
@@ -366,6 +367,7 @@ const styles = {
     marginBottom: "20px",
   },
   selectinput: {
+    height:"50px",
     width: "100%",
     padding: "10px",
     marginTop: "5px",

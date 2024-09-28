@@ -82,7 +82,7 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               // onClick={() => redirectPage("explorescar")}
               > <a
                 className={`nav-link active page-scroll cusrsor-pointer pointer-cursor text-decoration-none text-theme`}
-                href="#explorecar"
+                onClick={() => handleClickLink( "explorecars")}
                 data-bs-dismiss="offcanvas"
               >
                 Explore Cars

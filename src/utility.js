@@ -57,7 +57,7 @@ export const categories = [
     id: 1,
   },
   {
-    name: "SUV",
+    name: "suv",
     id: 2,
   },
   {

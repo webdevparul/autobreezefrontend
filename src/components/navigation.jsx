@@ -278,8 +278,8 @@ export const Navigation = ({ page }) => {
               </li>
               <li className="nav-item">
                 <a
-                  // onClick={() => handleClickLink("explorecar")}
-                  className={`nav-link active page-scroll ${
+                  onClick={() => handleClickLink("explorecars")}
+                  className={`nav-link active page-scroll cursor-pointer pointer-cursor ${
                     isWhite ? "text-theme" : "text-white"
                   }`}
                 >
