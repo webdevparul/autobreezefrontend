@@ -26,7 +26,6 @@ const ChildHeader = (props) => {
           background: `url(../img/landing/landing${props.count}.png) center center no-repeat`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          // height: "90vh",
           width: "100vw",
           maxWidth: "100%",
           overflow: "hidden",

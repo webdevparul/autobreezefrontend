@@ -259,7 +259,7 @@ export const Navigation = ({ page }) => {
               <li className="nav-item">
                 <a
                   onClick={() => handleClickLink("aboutus")}
-                  className={`nav-link active page-scroll ${
+                  className={`nav-link active page-scroll pointer-cursor ${
                     isWhite ? "text-theme" : "text-white"
                   }`}
                 >
@@ -292,8 +292,9 @@ export const Navigation = ({ page }) => {
           {/* Right side: Sign In button */}
           <div className="navbar-text text-end d-none d-lg-block">
             <button
+            style={{visibility:"hidden"}}
               type="button"
-              className={`btn ${
+              className={`btn v-hidden ${
                 isWhite ? "btn-outline-dark" : "btn-outline-light"
               }`}
               // onClick={() => handleClickLink("signin")}
