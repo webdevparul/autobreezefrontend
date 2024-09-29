@@ -1,44 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import SignLeftSide from "../components/sign/signside.component";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [signInData, setsignInData] = useState({
-    emailId: "",
-    password: "",
+
+  // Initialize useFormik hook
+  const formik = useFormik({
+    initialValues: {
+      emailId: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      emailId: Yup.string()
+        .email("Invalid email address")
+        .required("Email id is required"),
+      password: Yup.string().required("Password is required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+      // You can add your sign-in logic here (e.g., API call)
+      // After successful sign-in, navigate to another page
+      // navigate("/some-path");
+    },
   });
-
-  const [isPassword, setisPassword] = useState(true);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setsignInData((pre) => ({
-      ...pre,
-      [name]: value,
-    }));
-  };
-
-  const togglePassword = () => {
-    setisPassword(!isPassword);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(signInData);
-  };
 
   return (
     <div>
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-12 col-md-6 ps-0 d-none d-md-block  ">
-            <img
-              src="./img/signinimg.png"
-              alt="Logo"
-              className="img-fluid w-100 siginimg"
-            />
-          </div>
+        <SignLeftSide>
           <div className="col-12 col-md-6 pe-5 ps-5">
-            <div className=" mt-5 pb-5">
+            <div className="mt-5 pb-5">
               <img
                 src="./img/logoblue.png"
                 alt="Logo"
@@ -47,33 +41,54 @@ const SignIn = () => {
               />
             </div>
             <h3 className="mb-4">Welcome Back!</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="name" className="form-label">
+                <label htmlFor="emailId" className="form-label">
                   Email Id
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="name"
+                  id="emailId"
                   name="emailId"
                   placeholder="abc@gmail.com"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.emailId}
                 />
+                {formik.touched.emailId && formik.errors.emailId ? (
+                  <div className="text-danger">{formik.errors.emailId}</div>
+                ) : null}
               </div>
               <div className="mb-3 position-relative">
-                <label htmlFor="email" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
-                  type={isPassword?"password":"text"}
+                  type={formik.values.showPassword ? "text" : "password"}
                   className="form-control"
-                  id="email"
+                  id="password"
                   name="password"
-                  onChange={handleChange}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
                   placeholder="abc@352441#"
+                  value={formik.values.password}
                 />
-                <span className="pass-eye cursor-pointer pointer-cursor" onClick={togglePassword}>{!isPassword?<i className="bi bi-eye"></i>:<i className="bi bi-eye-slash"></i>}</span>
+                <span
+                  className="pass-eye cursor-pointer pointer-cursor"
+                  onClick={() => {
+                    formik.setFieldValue("showPassword", !formik.values.showPassword);
+                  }}
+                >
+                  {formik.values.showPassword ? (
+                    <i className="bi bi-eye"></i>
+                  ) : (
+                    <i className="bi bi-eye-slash"></i>
+                  )}
+                </span>
+                {formik.touched.password && formik.errors.password ? (
+                  <div className="text-danger">{formik.errors.password}</div>
+                ) : null}
               </div>
 
               <button type="submit" className="btn btn-custom w-100">
@@ -84,7 +99,7 @@ const SignIn = () => {
               New to Autobreeze? <Link to={"/signup"}>Sign Up</Link>
             </div>
           </div>
-        </div>
+        </SignLeftSide>
       </div>
     </div>
   );
