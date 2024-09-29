@@ -63,7 +63,7 @@ const SignUp = () => {
                   }`}
                   id="email"
                   name="email"
-                  placeholder="abc@gmail.com"
+                  // placeholder="abc@gmail.com"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -84,7 +84,7 @@ const SignUp = () => {
                     }`}
                     id="password"
                     name="password"
-                    placeholder="abc@352441#"
+                    // placeholder="abc@352441#"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -118,7 +118,7 @@ const SignUp = () => {
                     }`}
                     id="confirmPassword"
                     name="confirmPassword"
-                    placeholder="abc@352441#"
+                    // placeholder="abc@352441#"
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}

@@ -51,7 +51,7 @@ const SignIn = () => {
                   className="form-control"
                   id="emailId"
                   name="emailId"
-                  placeholder="abc@gmail.com"
+                  // placeholder="abc@gmail.com"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.emailId}
@@ -71,7 +71,7 @@ const SignIn = () => {
                   name="password"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  placeholder="abc@352441#"
+                  // placeholder="abc@352441#"
                   value={formik.values.password}
                 />
                 <span
