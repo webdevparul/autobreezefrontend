@@ -54,6 +54,14 @@ const Brand = () => {
         <div className="col slider"><img src="./img/brand/landrover.png" className="img-fluid w-75 h-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/jeep.png" className="img-fluid w-75 h-75" alt="" /></div>
         <div className="col slider"><img src="./img/brand/mer.png" className="img-fluid w-75 h-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/royce.png" className="img-fluid w-75 h-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/suzuki.png" className="img-fluid w-75 h-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/purche.png" className="img-fluid w-75 h-75" alt="" /></div>
+        <div className="col slider"><img src="./img/brand/skoda.png" className="img-fluid w-75 h-75" alt="" /></div>
+
+
+        
+        
         <div style={{marginRight:"60px"}} className="col slider"><img src="./img/brand/bmw.svg" className="img-fluid w-75 h-75 " alt="" /></div>
 
         </Marquee>
