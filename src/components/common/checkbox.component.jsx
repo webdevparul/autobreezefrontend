@@ -12,7 +12,7 @@ const CheckBoxComponent = ({labelname,name,id,value,handleChange}) => {
         name={name}
         onChange={handleChange}
       />
-      <label className="form-check-label" htmlFor="flexCheckDefault">
+      <label className="form-check-label text-uppercase " htmlFor="flexCheckDefault">
        {labelname}
       </label>
     </div>
