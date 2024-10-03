@@ -44,6 +44,13 @@ const Brand = () => {
             <Marquee speed={80}>
               <div className="col slider">
                 <img
+                  src="./img/brand/landrovers.png"
+                  className="img-fluid w-75 h-75"
+                  alt=""
+                />
+              </div>
+              <div className="col slider">
+                <img
                   src="./img/brand/hyundai.png"
                   className="img-fluid w-75 h-75"
                   alt=""
@@ -51,35 +58,22 @@ const Brand = () => {
               </div>
               <div className="col slider">
                 <img
-                  src="./img/brand/honda.png"
-                  className="img-fluid w-75 h-75"
-                  alt=""
-                />
-              </div>
-              <div className="col slider">
-                <img
-                  src="./img/brand/landrover.png"
-                  className="img-fluid w-75 h-75"
-                  alt=""
-                />
-              </div>
-              <div className="col slider">
-                <img
                   src="./img/brand/jeep.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
               </div>
+             
               <div className="col slider">
                 <img
-                  src="./img/brand/mer.png"
+                  src="./img/brand/mercidez.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
               </div>
               <div style={{ marginRight: "60px" }} className="col slider">
                 <img
-                  src="./img/brand/bmw.svg"
+                  src="./img/brand/bmw.png"
                   className="img-fluid w-75 h-75 "
                   alt=""
                 />
@@ -87,21 +81,21 @@ const Brand = () => {
               {/* <div className="col slider"><img src="./img/brand/hyundai.png" className="img-fluid w-75 h-75 "  alt="" /></div> */}
               <div className="col slider">
                 <img
-                  src="./img/brand/honda.png"
+                  src="./img/brand/v.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
               </div>
               <div className="col slider">
                 <img
-                  src="./img/brand/landrover.png"
+                  src="./img/brand/reanult.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
               </div>
               <div className="col slider">
                 <img
-                  src="./img/brand/jeep.png"
+                  src="./img/brand/mg.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
@@ -118,19 +112,13 @@ const Brand = () => {
               {/* <div className="col slider"><img src="./img/brand/purche.png" className="img-fluid w-75 h-75" alt="" /></div> */}
               <div className="col slider">
                 <img
-                  src="./img/brand/skoda.png"
+                  src="./img/brand/infiniti.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
               </div>
 
-              <div style={{ marginRight: "60px" }} className="col slider">
-                <img
-                  src="./img/brand/bmw.svg"
-                  className="img-fluid w-75 h-75 "
-                  alt=""
-                />
-              </div>
+            
             </Marquee>
           </div>
           {/* <div className="col-3"><img src="./img/brand/honda.png" width={20} alt="" /></div> */}

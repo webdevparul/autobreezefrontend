@@ -22,24 +22,36 @@ const ChildHeader = (props) => {
   return (
     <>
       <div
-       style={{
-        background: `url(../img/landing/landing${props.count}.png) center center no-repeat`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        width: "100vw",
-        maxWidth: "100%",
-        overflow: "hidden",
-        minWidth: "100%",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.8)", // Shadow effect
-        
-      }}
-      
-      
+        style={{
+          background: `url(../img/landing/landing${props.count}.png) center center no-repeat`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: "100vw",
+          maxWidth: "100%",
+          overflow: "hidden",
+          minWidth: "100%",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.8)", // Shadow effect
+        }}
       >
         <div className="intro position-relative">
+          {props.count === "2" && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: "rgba(0, 0, 0, 0.6)", // Black overlay with opacity
+                zIndex: 1,
+                width: "100%",
+                height: "100%",
+              }}
+            />
+          )}
           <div className="overlay"></div>
           <div className="container h-100 d-flex flex-column justify-content-center">
-            <div className="row">
+            <div className="row zx">
               <div className="col-md-8 col-md-offset-0 intro-text">
                 <h2 className="text-start h1-text-intro text-capitalize fs-1 text-white mb-3">
                   {props.data ? props.data.title : "Car Rental Made"}
