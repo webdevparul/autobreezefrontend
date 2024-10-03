@@ -121,7 +121,8 @@ hr {
   
 }
 .footer-img{
-  height: 35px !important;
+  height: 50px !important;
+  
 }
 
 
@@ -1182,4 +1183,8 @@ margin-bottom: 0px !important;
   100% {
     left: -100px;    
   }
+}
+
+.zx{
+  z-index: 99 !important;
 }

@@ -12,10 +12,6 @@ import { useDebounce } from "use-debounce";
 const ExploreCars = ({ data }) => {
   const carInitialData=data
   const [carData, setcarData] = useState(data);
- 
-  
-
-  
   const [filterData, setfilterData] = useState({
     categories: [],
     capacities: [],
@@ -41,8 +37,6 @@ const ExploreCars = ({ data }) => {
       obj.title.toLowerCase().includes(lowerKeyword)
     );
   }
-  
-  
   function filterDataByCat(items,selectedCategories){
     const selectedCategory=selectedCategories.map((item)=>item.toLowerCase().trim())
     const filteredData=items.filter((item)=>selectedCategory.includes(item.category))

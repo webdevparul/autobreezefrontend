@@ -64,7 +64,6 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
   const [period, setPeriod] = useState("");
 
   const handleClickBookPeriod = (price, period) => {
-    debugger
     setPrice(price);
     setPeriod(period);
   };
@@ -72,7 +71,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
   return (
     <div className="col-12 col-md-6 col-lg-6 car-fleet">
       <div className={`card w-100 bg-theme-dark border-0 ${bg}`} style={{ minHeight: "330px" }}>
-        <div className={`w-100 px-1 car-img-div position-relative`}>
+        <div className={` px-1 car-img-div position-relative`}>
           <img
             src={`./img/car/${carDetail.img}`}
             className="card-img-top cursor-pointer image-car img-fluid"
@@ -82,22 +81,25 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
           />
         </div>
         <div className={`card-body ${bg}`}>
-          <h5 className="card-title text-theme fs-3 fw-semibold pb-2 text-capitalize">
+          <h5 className="card-title text-theme fs-3 fw-semibold pb-2 text-capitalize text-center">
             {carDetail.title}
           </h5>
-          <div className="w-100 mt-2 mb-2 d-flex justify-content-start flex-wrap">
+          <div className="w-100 mt-2 mb-2 d-flex justify-content-center flex-wrap">
             {carDetail.bookTime.map((time, index) => (
               <div
                 key={index}
                 className={`price-card me-2 ${price === time.price ? "act" : ""}`}
                 onClick={() => handleClickBookPeriod(time.price, time.label)}
               >
-                <h6>{time.label}</h6>
-                <h6 className="fw-semibold text-theme">{time.price}</h6>
+                <h6 className="text-center">{time.label}</h6>
+                <h6 className="fw-semibold text-theme text-center">{time.price}</h6>
               </div>
             ))}
           </div>
-          <button className="btn-style501 btn bg-dark-blue w-100 border-0 text-white mb-2 py-3 fs-6 mt-3" onClick={() => handleClickBook(carDetail?.id)}>
+          <button
+            className="btn-style btn bg-dark-blue w-100 border-0 text-white mb-2 py-3 fs-6 mt-3"
+            onClick={() => handleClickBook(carDetail?.id)}
+          >
             {period === "" ? "Book" : `Book for ${price}`}
           </button>
         </div>
