@@ -106,13 +106,13 @@ const Brand = () => {
                   alt=""
                 />
               </div>
-              <div className="col slider">
+              {/* <div className="col slider">
                 <img
                   src="./img/brand/mer.png"
                   className="img-fluid w-75 h-75"
                   alt=""
                 />
-              </div>
+              </div> */}
               {/* <div className="col slider"><img src="./img/brand/royce.png" className="img-fluid w-75 h-75" alt="" /></div> */}
               {/* <div className="col slider"><img src="./img/brand/suzuki.png" className="img-fluid w-75 h-75" alt="" /></div> */}
               {/* <div className="col slider"><img src="./img/brand/purche.png" className="img-fluid w-75 h-75" alt="" /></div> */}

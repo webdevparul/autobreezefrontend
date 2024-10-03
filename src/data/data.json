@@ -258,7 +258,7 @@
       },
       {
         "title":"Monthly",
-        "price":"20000 AED"
+        "price":"22000 AED"
       }
     ]
     },
@@ -553,11 +553,11 @@
   "id":13,
   "bookTime":[{
     "title":"Daily",
-    "price":"185 AED"
+    "price":"225 AED"
   },
   {
     "title":"Weekly",
-    "price":"1120 AED"
+    "price":"1260 AED"
   },
   {
     "title":"Monthly",
@@ -580,15 +580,15 @@
   "id":14,
   "bookTime":[{
     "title":"Daily",
-    "price":"225 AED"
+    "price":"185 AED"
   },
   {
     "title":"Weekly",
-    "price":"1226 AED"
+    "price":"1120 AED"
   },
   {
     "title":"Monthly",
-    "price":"4200 AED"
+    "price":"3600 AED"
   }
 ]
 },

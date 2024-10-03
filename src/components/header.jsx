@@ -22,15 +22,19 @@ const ChildHeader = (props) => {
   return (
     <>
       <div
-        style={{
-          background: `url(../img/landing/landing${props.count}.png) center center no-repeat`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100vw",
-          maxWidth: "100%",
-          overflow: "hidden",
-          minWidth: "100%",
-        }}
+       style={{
+        background: `url(../img/landing/landing${props.count}.png) center center no-repeat`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        width: "100vw",
+        maxWidth: "100%",
+        overflow: "hidden",
+        minWidth: "100%",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.8)", // Shadow effect
+        
+      }}
+      
+      
       >
         <div className="intro position-relative">
           <div className="overlay"></div>

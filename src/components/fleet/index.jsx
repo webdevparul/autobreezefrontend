@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const OurFleet = ({ data }) => {
   console.log(data)
-  const [Category, setCategory] = useState("luxury");
+  const [Category, setCategory] = useState("all");
   const intialData=data?.filter(item=>item.category===Category)
   const [carData, setcarData] = useState(intialData);
   const [isDiplayMore, setisDiplayMore] = useState(false)
