@@ -2,10 +2,11 @@ import { END_POINT } from "../config";
 import { API_RESPONSE_STATUS, ResponseModel, useApi } from "./useapi.hook";
 
 const useUserApi = (initialUrl) => {
-  const { handleAxiosPostAsync } = useApi();
-  const responseModel = new ResponseModel();
+  const { handleAxiosPostAsync,handleAxiosPutAsync } = useApi();
+  let responseModel = new ResponseModel();
 
   const signUp = async (data) => {
+    // const data={}
     try {
       responseModel = await handleAxiosPostAsync(
         data,
@@ -23,9 +24,13 @@ const useUserApi = (initialUrl) => {
   };
 
   const signIn = async (data) => {
+    const values={
+      email:data.emailId,
+      password:data.password
+    }
     try {
       responseModel = await handleAxiosPostAsync(
-        data,
+        values,
         `${END_POINT.USER}/signin`
       );
       if (
@@ -37,9 +42,29 @@ const useUserApi = (initialUrl) => {
     } catch (err) {
       throw new Error(err);
     }
+    
   };
+  const updateProfile = async (data,userId) => {
+   debugger
+    try {
+      responseModel = await handleAxiosPutAsync(
+        data,
+        `${END_POINT.USER}/${userId}`
+      );
+      if (
+        responseModel &&
+        responseModel.status === API_RESPONSE_STATUS.SUCCESS
+      ) {
+        return responseModel;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
-  return { signIn, signUp };
+
+
+  return { signIn, signUp, updateProfile};
 };
 
 export default useUserApi;

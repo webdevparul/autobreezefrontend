@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigation } from "../components/navigation";
 import Breadcrumb from "../components/common/bredcum.component";
 import Footer from "../components/footer";
@@ -9,8 +9,24 @@ import BookingHistorySection from "../components/profile/booking-history-section
 
 const ProfilePage = () => {
   const [sectionName, setSectionName] = useState("profile");
+
+
+  useEffect(() => {
+    //fetch user Detail
+    
+  }, [])
+  
   const handleChangeSection = (name) => {
     setSectionName(name);
+    switch(name){
+      case "livebooking":
+        break;
+      case "bookinghistory":
+        break;
+      default:
+        break;
+
+    }
   };
   return (
     <>

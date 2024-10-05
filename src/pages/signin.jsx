@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import SignLeftSide from "../components/sign/signside.component";
+import useUserApi from "../api/useuserapi.hook";
+import { handleNotify, TOASTER_POSITION, TOASTER_TYPE } from "../components/common/notification/toaster_notify.component";
 
 const SignIn = () => {
   const navigate = useNavigate();
-
+  const { signIn } = useUserApi();
   // Initialize useFormik hook
   const formik = useFormik({
     initialValues: {
@@ -19,11 +21,16 @@ const SignIn = () => {
         .required("Email id is required"),
       password: Yup.string().required("Password is required"),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-      // You can add your sign-in logic here (e.g., API call)
-      // After successful sign-in, navigate to another page
-      // navigate("/some-path");
+    onSubmit:async (values) => {
+     try {
+      const data=await signIn(values)
+      if(data&&data?.isSucess){
+        //manage redux 
+        handleNotify(data.message,TOASTER_TYPE.SUCCESS,TOASTER_POSITION.TOP_RIGHT)
+      }
+     } catch (error) {
+      
+     }
     },
   });
 
@@ -77,7 +84,10 @@ const SignIn = () => {
                 <span
                   className="pass-eye cursor-pointer pointer-cursor"
                   onClick={() => {
-                    formik.setFieldValue("showPassword", !formik.values.showPassword);
+                    formik.setFieldValue(
+                      "showPassword",
+                      !formik.values.showPassword
+                    );
                   }}
                 >
                   {formik.values.showPassword ? (

@@ -18,13 +18,13 @@ export class ResponseModel {
   };
 export const useApi = () => {
     let responseclass = new ResponseModel();
-    const handleAxiosPostAsync=async(requestModel,requestUrl,isAuthorizationRequired=false)=>{
+    let handleAxiosPostAsync=async(requestModel,requestUrl,isAuthorizationRequired=false)=>{
         let config;
         if (isAuthorizationRequired === true) {
             config = {
                 headers: {
                     'content-type': 'application/json',
-                    //'Accept': 'application/json',
+                    'Accept': 'application/json',
                     // 'Authorization': getAuthKey()
                 }
             }
@@ -32,11 +32,13 @@ export const useApi = () => {
         else {
             config = {
                 headers: {
-                    'content-type': 'application/json'
+                    'content-type': 'application/json',
+                    'Accept': 'application/json',
                 }
             }
         }
         try {
+            debugger
             let response;
             if (requestModel && requestModel !== null && requestModel !== undefined) {
                 response = await axios.post(requestUrl, requestModel, config);
@@ -44,7 +46,7 @@ export const useApi = () => {
             else {
                 response = await axios.post(requestUrl, config);
             }
-            responseclass = await JSON.parse(response.data.result);
+            responseclass = response.data.result;
         } catch (error) {
             throw new Error(error)
             // errorLog(error, requestModel, methodName, requestUrl).then(res => {
@@ -60,7 +62,9 @@ export const useApi = () => {
         if (isAuthorizationRequired === true) {
             config = {
                 headers: {
-                    'content-type': 'application/json',
+                    // 'content-type': 'application/json',
+                    'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
+
                     //'Accept': 'application/json',
                     // 'Authorization': getAuthKey()
                 }
@@ -69,17 +73,19 @@ export const useApi = () => {
         else {
             config = {
                 headers: {
-                    'content-type': 'application/json'
+                    // 'content-type': 'application/json'
+                        'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
+
                 }
             }
         }
         try {
             let response;
             if (requestModel && requestModel !== null && requestModel !== undefined) {
-                response = await axios.post(requestUrl, requestModel, config);
+                response = await axios.put(requestUrl, requestModel, config);
             }
             else {
-                response = await axios.post(requestUrl, config);
+                response = await axios.put(requestUrl, config);
             }
             responseclass = await JSON.parse(response.data.result);
         } catch (error) {

@@ -2,9 +2,17 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FileUploader } from "react-drag-drop-files";
+import useUserApi from "../../api/useuserapi.hook";
+import {
+  handleNotify,
+  TOASTER_POSITION,
+  TOASTER_TYPE,
+} from "../common/notification/toaster_notify.component";
 
 const ProfileSectionComponent = ({ isEdit = false }) => {
   const fileTypes = ["JPG", "PNG", "GIF", "PDF"];
+  const userId = 1;
+  const { updateProfile } = useUserApi();
 
   // Formik form handling and Yup validation
   const formik = useFormik({
@@ -20,7 +28,7 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       pinCode: "",
       dlNumber: "",
       passportNumber: "",
-      file:null
+      file: null,
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required("First Name is required"),
@@ -36,19 +44,66 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       dlNumber: Yup.string().required("DL Number is required"),
       passportNumber: Yup.string().required("Passport Number is required"),
       // file: Yup.mixed().required("f"),
-
     }),
-    onSubmit: (values) => {
-      debugger
-      console.log("Form data", values);
+    onSubmit: async (values) => {
+      debugger;
+      const {
+        firstName,
+        middleName,
+        lastName,
+        mobileNumber,
+        emailId,
+        nationality,
+        addressLine1,
+        addressLine2,
+        pinCode,
+        dlNumber,
+        passportNumber,
+        file,
+      } = values;
+      const userData = {
+        first_name: firstName || "",
+        middle_name: middleName || "",
+        last_name: lastName || "",
+        mobile_number: mobileNumber || "",
+        email: emailId || "",
+        nationality: nationality || "",
+        address_line1: addressLine1 || "",
+        address_line2: addressLine2 || "",
+        pin_code: pinCode || "",
+        dl_number: dlNumber || "",
+        passport_number: passportNumber || "",
+        user_img: file || null, // Assuming file is an image or null
+        dl_copy: file || null, // Assuming file is an image or null
+      };
+      const formData = new FormData();
+
+      Object.entries(userData).forEach(([key, value]) => {
+        // Check for files (assuming value can be a File object)
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else if (value) {
+          // Append only if the value is non-null and non-empty
+          formData.append(key, value);
+        }
+      });
+      console.log(formData.get('first_name'));
+      // console.log(data)
+      const data = await updateProfile(formData, userId);
+      if (data && data?.isSucess) {
+        //manage redux
+        handleNotify(
+          data.message,
+          TOASTER_TYPE.SUCCESS,
+          TOASTER_POSITION.TOP_RIGHT
+        );
+      }
     },
   });
 
   return (
     <div className="profile-detail-section mt-5 bg-white py-2 pb-3 mb-3 px-3">
-      <form className="profile-form"
-       onSubmit={formik.handleSubmit}
-       >
+      <form className="profile-form" onSubmit={formik.handleSubmit}>
         <div className="row pt-3 px-3">
           <div className="col-8 col-md-6">
             <h3 className="text-theme pt-2">Personal Details</h3>
@@ -59,7 +114,10 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
                 Edit detail
               </button>
             ) : (
-              <button className="btn btn-dark btn-sm btn-md-lg px-4" type="submit">
+              <button
+                className="btn btn-dark btn-sm btn-md-lg px-4"
+                type="submit"
+              >
                 Save
               </button>
             )}

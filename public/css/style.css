@@ -800,6 +800,7 @@ label {
   #about img {
     margin: 50px 0;
   }
+  
 }
 
 .rental-book-section h1 {
@@ -916,6 +917,19 @@ margin-bottom: 0px !important;
 .invoice-btn-div{
   width: 140px !important;
 }
+@media (max-width: 768px) {
+  .livecar-section{
+    display: flex;
+    flex-direction: column;
+  }
+  .livecar-section .car-img{
+    text-align: left !important;
+  }
+  .invoice-btn-div{
+    width: 100% !important;
+  }
+}
+
 /* For smaller screens (mobile) */
 @media (max-width: 768px) {
   .view-all-btn {
@@ -924,6 +938,7 @@ margin-bottom: 0px !important;
     padding-right: 0;
     text-align: center; /* Ensure text is centered */
   }
+  
 }
 
 .accordion-button,
@@ -1131,6 +1146,7 @@ margin-bottom: 0px !important;
     display: block !important;
     background-color: var(--main-dark);
   }
+  
   .adress-label {
     left: 4% !important;
   }
