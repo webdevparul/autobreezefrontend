@@ -5,10 +5,13 @@ import * as Yup from "yup";
 import SignLeftSide from "../components/sign/signside.component";
 import useUserApi from "../api/useuserapi.hook";
 import { handleNotify, TOASTER_POSITION, TOASTER_TYPE } from "../components/common/notification/toaster_notify.component";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/user/userslice";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const { signIn } = useUserApi();
+  const dispatch=useDispatch()
   // Initialize useFormik hook
   const formik = useFormik({
     initialValues: {
@@ -26,7 +29,9 @@ const SignIn = () => {
       const data=await signIn(values)
       if(data&&data?.isSucess){
         //manage redux 
+        dispatch(addUser(data?.data))
         handleNotify(data.message,TOASTER_TYPE.SUCCESS,TOASTER_POSITION.TOP_RIGHT)
+        navigate("/")
       }
      } catch (error) {
       

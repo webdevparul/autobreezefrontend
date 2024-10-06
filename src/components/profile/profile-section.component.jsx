@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FileUploader } from "react-drag-drop-files";
@@ -8,26 +8,28 @@ import {
   TOASTER_POSITION,
   TOASTER_TYPE,
 } from "../common/notification/toaster_notify.component";
+import { useSelector } from "react-redux";
 
-const ProfileSectionComponent = ({ isEdit = false }) => {
+const ProfileSectionComponent = () => {
   const fileTypes = ["JPG", "PNG", "GIF", "PDF"];
-  const userId = 15;
   const { updateProfile } = useUserApi();
-
+  const user=useSelector(({user})=>user?.user)
+  const [isEdit, setisEdit] = useState(false)
+  const userId = user.user_id;
   // Formik form handling and Yup validation
   const formik = useFormik({
     initialValues: {
-      firstName: "",
-      middleName: "",
-      lastName: "",
-      mobileNumber: "",
-      emailId: "",
-      nationality: "",
-      addressLine1: "",
-      addressLine2: "",
-      pinCode: "",
-      dlNumber: "",
-      passportNumber: "",
+      firstName: user.first_name,
+      middleName: user.middle_name,
+      lastName: user.last_name,
+      mobileNumber: user.mobile_number,
+      emailId: user.email,
+      nationality: user.nationality,
+      addressLine1: user.address_line1,
+      addressLine2:user.address_line2,
+      pinCode: user.pin_code,
+      dlNumber: user.dl_number,
+      passportNumber: user.passport_number,
       file: null,
     },
     validationSchema: Yup.object({
@@ -46,7 +48,6 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       // file: Yup.mixed().required("f"),
     }),
     onSubmit: async (values) => {
-      debugger;
       const {
         firstName,
         middleName,
@@ -100,277 +101,313 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
       }
     },
   });
-
+console.log(isEdit)
   return (
     <div className="profile-detail-section mt-5 bg-white py-2 pb-3 mb-3 px-3">
-      <form className="profile-form" onSubmit={formik.handleSubmit}>
-        <div className="row pt-3 px-3">
-          <div className="col-8 col-md-6">
-            <h3 className="text-theme pt-2">Personal Details</h3>
-          </div>
-          <div className="col-4 col-md-6 text-end">
+  <form className={`profile-form ${isEdit?"":"not-edit"}`} onSubmit={formik.handleSubmit}>
+    <div className="row pt-3 px-3">
+      <div className="col-8 col-md-6">
+        <h3 className="text-theme pt-2">Personal Details</h3>
+      </div>
+      <div className="col-4 col-md-6 text-end">
+        {!isEdit ? (
+          <button className="btn btn-outline-dark btn-sm btn-md-lg" onClick={()=>setisEdit(true)}>
+            Edit detail
+          </button>
+        ) : (
+          <button className="btn btn-outline-dark btn-sm btn-md-lg" type="submit">
+            Save
+          </button>
+        )}
+      </div>
+    </div>
+
+    <div className="row">
+      <div className="col-12 col-md-2">
+        <div className="rounded-img-div d-flex justify-content-center justify-content-md-start py-4 py-md-0">
+          <img src="./img/profile.png" alt="profileimg" />
+        </div>
+      </div>
+      <div className="col-12 col-md-10 px-2 px-md-5">
+        <div className="row">
+          {/* First Name */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="firstName" className="form-label">
+              First Name *
+            </label>
             {isEdit ? (
-              <button className="btn btn-outline-dark btn-sm btn-md-lg">
-                Edit detail
-              </button>
+              <input
+                type="text"
+                className="form-control"
+                id="firstName"
+                name="firstName"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.firstName}
+              />
             ) : (
-              <button
-                className="btn btn-dark btn-sm btn-md-lg px-4"
-                type="submit"
-              >
-                Save
-              </button>
+              <h6>{formik.values.firstName}</h6>
+            )}
+            {formik.touched.firstName && formik.errors.firstName ? (
+              <div className="text-danger">{formik.errors.firstName}</div>
+            ) : null}
+          </div>
+
+          {/* Middle Name */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="middleName" className="form-label">
+              Middle Name
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="middleName"
+                name="middleName"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.middleName}
+              />
+            ) : (
+              <h6>{formik.values.middleName}</h6>
             )}
           </div>
-        </div>
-        <div className="row">
-          <div className="col-12 col-md-2 ">
-            <div className="rounded-img-div d-flex justify-content-center justify-content-md-start py-4 py-md-0">
-              <img src="./img/profile.png" alt="profileimg" />
-            </div>
+
+          {/* Last Name */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="lastName" className="form-label">
+              Last Name *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="lastName"
+                name="lastName"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.lastName}
+              />
+            ) : (
+              <h6>{formik.values.lastName}</h6>
+            )}
+            {formik.touched.lastName && formik.errors.lastName ? (
+              <div className="text-danger">{formik.errors.lastName}</div>
+            ) : null}
           </div>
-          <div className="col-12 col-md-10 px-2 px-md-5">
-            <div className="row">
-              {/* First Name */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="firstName" className="form-label">
-                  First Name *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="firstName"
-                  name="firstName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.firstName}
-                />
-                {formik.touched.firstName && formik.errors.firstName ? (
-                  <div className="text-danger">{formik.errors.firstName}</div>
-                ) : null}
-              </div>
+        </div>
 
-              {/* Middle Name */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="middleName" className="form-label">
-                  Middle Name
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="middleName"
-                  name="middleName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.middleName}
-                />
-              </div>
+        <div className="row">
+          {/* Mobile Number */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="mobileNumber" className="form-label">
+              Mobile Number *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="mobileNumber"
+                name="mobileNumber"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.mobileNumber}
+              />
+            ) : (
+              <h6>{formik.values.mobileNumber}</h6>
+            )}
+            {formik.touched.mobileNumber && formik.errors.mobileNumber ? (
+              <div className="text-danger">{formik.errors.mobileNumber}</div>
+            ) : null}
+          </div>
 
-              {/* Last Name */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="lastName" className="form-label">
-                  Last Name *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="lastName"
-                  name="lastName"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.lastName}
-                />
-                {formik.touched.lastName && formik.errors.lastName ? (
-                  <div className="text-danger">{formik.errors.lastName}</div>
-                ) : null}
-              </div>
-            </div>
+          {/* Email ID */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="emailId" className="form-label">
+              Email Id *
+            </label>
+            {isEdit ? (
+              <input
+                type="email"
+                className="form-control"
+                id="emailId"
+                name="emailId"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.emailId}
+              />
+            ) : (
+              <h6>{formik.values.emailId}</h6>
+            )}
+            {formik.touched.emailId && formik.errors.emailId ? (
+              <div className="text-danger">{formik.errors.emailId}</div>
+            ) : null}
+          </div>
 
-            <div className="row">
-              {/* Mobile Number */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="mobileNumber" className="form-label">
-                  Mobile Number *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="mobileNumber"
-                  name="mobileNumber"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.mobileNumber}
-                />
-                {formik.touched.mobileNumber && formik.errors.mobileNumber ? (
-                  <div className="text-danger">
-                    {formik.errors.mobileNumber}
-                  </div>
-                ) : null}
-              </div>
+          {/* Nationality */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="nationality" className="form-label">
+              Nationality *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="nationality"
+                name="nationality"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.nationality}
+              />
+            ) : (
+              <h6>{formik.values.nationality}</h6>
+            )}
+            {formik.touched.nationality && formik.errors.nationality ? (
+              <div className="text-danger">{formik.errors.nationality}</div>
+            ) : null}
+          </div>
+        </div>
 
-              {/* Email ID */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="emailId" className="form-label">
-                  Email Id *
-                </label>
-                <input
-                  type="email"
-                  className="form-control"
-                  id="emailId"
-                  name="emailId"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.emailId}
-                />
-                {formik.touched.emailId && formik.errors.emailId ? (
-                  <div className="text-danger">{formik.errors.emailId}</div>
-                ) : null}
-              </div>
+        <div className="row">
+          {/* Address Line 1 */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="addressLine1" className="form-label">
+              Address Line 1 *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="addressLine1"
+                name="addressLine1"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.addressLine1}
+              />
+            ) : (
+              <h6>{formik.values.addressLine1}</h6>
+            )}
+            {formik.touched.addressLine1 && formik.errors.addressLine1 ? (
+              <div className="text-danger">{formik.errors.addressLine1}</div>
+            ) : null}
+          </div>
 
-              {/* Nationality */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="nationality" className="form-label">
-                  Nationality *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="nationality"
-                  name="nationality"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.nationality}
-                />
-                {formik.touched.nationality && formik.errors.nationality ? (
-                  <div className="text-danger">{formik.errors.nationality}</div>
-                ) : null}
-              </div>
-            </div>
+          {/* Address Line 2 */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="addressLine2" className="form-label">
+              Address Line 2
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="addressLine2"
+                name="addressLine2"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.addressLine2}
+              />
+            ) : (
+              <h6>{formik.values.addressLine2}</h6>
+            )}
+            {formik.touched.addressLine2 && formik.errors.addressLine2 ? (
+              <div className="text-danger">{formik.errors.addressLine2}</div>
+            ) : null}
+          </div>
 
-            <div className="row">
-              {/* Address Line 1 */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="addressLine1" className="form-label">
-                  Address Line 1 *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="addressLine1"
-                  name="addressLine1"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.addressLine1}
-                />
-                {formik.touched.addressLine1 && formik.errors.addressLine1 ? (
-                  <div className="text-danger">
-                    {formik.errors.addressLine1}
-                  </div>
-                ) : null}
-              </div>
+          {/* Pin Code */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="pinCode" className="form-label">
+              Pin Code *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="pinCode"
+                name="pinCode"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.pinCode}
+              />
+            ) : (
+              <h6>{formik.values.pinCode}</h6>
+            )}
+            {formik.touched.pinCode && formik.errors.pinCode ? (
+              <div className="text-danger">{formik.errors.pinCode}</div>
+            ) : null}
+          </div>
+        </div>
 
-              {/* Address Line 2 */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="addressLine2" className="form-label">
-                  Address Line 2 *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="addressLine2"
-                  name="addressLine2"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.addressLine2}
-                />
-                {formik.touched.addressLine2 && formik.errors.addressLine2 ? (
-                  <div className="text-danger">
-                    {formik.errors.addressLine2}
-                  </div>
-                ) : null}
-              </div>
+        <div className="row">
+          {/* DL Number */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="dlNumber" className="form-label">
+              DL Number *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="dlNumber"
+                name="dlNumber"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.dlNumber}
+              />
+            ) : (
+              <h6>{formik.values.dlNumber}</h6>
+            )}
+            {formik.touched.dlNumber && formik.errors.dlNumber ? (
+              <div className="text-danger">{formik.errors.dlNumber}</div>
+            ) : null}
+          </div>
 
-              {/* Pin Code */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="pinCode" className="form-label">
-                  Pin Code *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="pinCode"
-                  name="pinCode"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.pinCode}
-                />
-                {formik.touched.pinCode && formik.errors.pinCode ? (
-                  <div className="text-danger">{formik.errors.pinCode}</div>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="row">
-              {/* DL Number */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="dlNumber" className="form-label">
-                  DL Number *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="dlNumber"
-                  name="dlNumber"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.dlNumber}
-                />
-                {formik.touched.dlNumber && formik.errors.dlNumber ? (
-                  <div className="text-danger">{formik.errors.dlNumber}</div>
-                ) : null}
-              </div>
-
-              {/* Passport Number */}
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="passportNumber" className="form-label">
-                  Passport Number *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="passportNumber"
-                  name="passportNumber"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.passportNumber}
-                />
-                {formik.touched.passportNumber &&
-                formik.errors.passportNumber ? (
-                  <div className="text-danger">
-                    {formik.errors.passportNumber}
-                  </div>
-                ) : null}
-              </div>
-              <div className="col-12 col-md-4 mb-3">
-                <label htmlFor="pinCode" className="form-label">
-                  Pin Code *
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="pinCode"
-                  name="pinCode"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.pinCode}
-                />
-                {formik.touched.pinCode && formik.errors.pinCode ? (
-                  <div className="text-danger">{formik.errors.pinCode}</div>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="row">
+          {/* Passport Number */}
+          <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="passportNumber" className="form-label">
+              Passport Number *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="passportNumber"
+                name="passportNumber"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.passportNumber}
+              />
+            ) : (
+              <h6>{formik.values.passportNumber}</h6>
+            )}
+            {formik.touched.passportNumber && formik.errors.passportNumber ? (
+              <div className="text-danger">{formik.errors.passportNumber}</div>
+            ) : null}
+          </div>
+                    {/* Pin Code */}
+                    <div className="col-12 col-md-4 mb-3">
+            <label htmlFor="pinCode" className="form-label">
+              Pin Code *
+            </label>
+            {isEdit ? (
+              <input
+                type="text"
+                className="form-control"
+                id="pinCode"
+                name="pinCode"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.pinCode}
+              />
+            ) : (
+              <h6>{formik.values.pinCode}</h6>
+            )}
+            {formik.touched.pinCode && formik.errors.pinCode ? (
+              <div className="text-danger">{formik.errors.pinCode}</div>
+            ) : null}
+          </div>
+       {isEdit&&   <div className="row">
               <div className="col-12 mt-3">
                 <FileUploader
                   name="file"
@@ -379,11 +416,13 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
                   handleChange={(file) => formik.setFieldValue("file", file)}
                 />
               </div>
-            </div>
-          </div>
+            </div>}
         </div>
-      </form>
+      </div>
     </div>
+  </form>
+</div>
+
   );
 };
 

@@ -40,6 +40,7 @@ const SignUp = () => {
         const data=await signUp(values)
       if(data&&data?.isSucess){
         handleNotify(data.message,TOASTER_TYPE.SUCCESS,TOASTER_POSITION.TOP_RIGHT)
+        navigate("/signin")
       }
       } catch (error) {
         console.log(error)

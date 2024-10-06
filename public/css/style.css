@@ -1204,3 +1204,7 @@ margin-bottom: 0px !important;
 .zx{
   z-index: 99 !important;
 }
+
+.not-edit label{
+  display: contents !important;
+}
