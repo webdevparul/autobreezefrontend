@@ -52,10 +52,10 @@ export function calculateCounts(startDate, endDate) {
 }
 
 export const categories = [
-  {
-    name: "Sport",
-    id: 1,
-  },
+  // {
+  //   name: "Sport",
+  //   id: 1,
+  // },
   {
     name: "suv",
     id: 2,
@@ -65,10 +65,10 @@ export const categories = [
     name: "Sedan",
     id: 4,
   },
-  {
-    name: "Coupe",
-    id: 5,
-  },
+  // {
+  //   name: "Coupe",
+  //   id: 5,
+  // },
 ];
 
 export const capacity = [
@@ -83,6 +83,10 @@ export const capacity = [
   {
     capacity: 6,
     id: 3,
+  },
+  {
+    capacity: 8,
+    id: 4,
   },
   
 ];
