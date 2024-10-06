@@ -10,7 +10,7 @@ import {
 } from "../common/notification/toaster_notify.component";
 import { useSelector } from "react-redux";
 
-const ProfileSectionComponent = () => {
+const ProfileSectionComponent = ({userDetail}) => {
   const fileTypes = ["JPG", "PNG", "GIF", "PDF"];
   const { updateProfile } = useUserApi();
   const user=useSelector(({user})=>user?.user)

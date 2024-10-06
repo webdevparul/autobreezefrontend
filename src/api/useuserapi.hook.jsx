@@ -2,7 +2,7 @@ import { END_POINT } from "../config";
 import { API_RESPONSE_STATUS, ResponseModel, useApi } from "./useapi.hook";
 
 const useUserApi = (initialUrl) => {
-  const { handleAxiosPostAsync,handleAxiosPutAsync } = useApi();
+  const { handleAxiosPostAsync,handleAxiosPutAsync,handleAxiosGetAsync } = useApi();
   let responseModel = new ResponseModel();
 
   const signUp = async (data) => {
@@ -62,9 +62,24 @@ const useUserApi = (initialUrl) => {
     }
   }
 
+  const getUserDetail=async(userId)=>{
+    try {
+      responseModel = await handleAxiosGetAsync(
+        `${END_POINT.USER}/${userId}`
+      );
+      if (
+        responseModel &&
+        responseModel.status === API_RESPONSE_STATUS.SUCCESS
+      ) {
+        return responseModel;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 
 
-  return { signIn, signUp, updateProfile};
+  return { signIn, signUp,getUserDetail, updateProfile};
 };
 
 export default useUserApi;

@@ -126,7 +126,7 @@ export const useApi = () => {
             else {
                 response = await axios.get(requestUrl, config);
             }
-            responseclass = await JSON.parse(response.data.result);
+            responseclass = await response.data.result;
         } catch (error) {
             throw new Error(error)
             // errorLog(error, requestModel, methodName, requestUrl).then(res => {
