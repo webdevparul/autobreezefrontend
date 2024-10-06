@@ -11,7 +11,7 @@ import {
 
 const ProfileSectionComponent = ({ isEdit = false }) => {
   const fileTypes = ["JPG", "PNG", "GIF", "PDF"];
-  const userId = 1;
+  const userId = 15;
   const { updateProfile } = useUserApi();
 
   // Formik form handling and Yup validation
@@ -73,8 +73,8 @@ const ProfileSectionComponent = ({ isEdit = false }) => {
         pin_code: pinCode || "",
         dl_number: dlNumber || "",
         passport_number: passportNumber || "",
-        user_img: file || null, // Assuming file is an image or null
-        dl_copy: file || null, // Assuming file is an image or null
+        // user_img: file || null, // Assuming file is an image or null
+        driving_license_file: file || null, // Assuming file is an image or null
       };
       const formData = new FormData();
 

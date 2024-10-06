@@ -74,7 +74,9 @@ export const useApi = () => {
             config = {
                 headers: {
                     // 'content-type': 'application/json'
-                        'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
+                        // 'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
+                        'content-type': 'multipart/form-data; boundary=--------------------------165311064951130098837313',
+                        'accept-encoding': 'gzip, deflate, br',
 
                 }
             }
