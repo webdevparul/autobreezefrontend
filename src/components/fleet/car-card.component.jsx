@@ -91,7 +91,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
                 className={`price-card me-2 ${price === time.price ? "act" : ""}`}
                 onClick={() => handleClickBookPeriod(time.price, time.label)}
               >
-                <h6 className="text-center">{time.label}</h6>
+                <h6 className="text-center">{time.title}</h6>
                 <h6 className="fw-semibold text-theme text-center">{time.price}</h6>
               </div>
             ))}
