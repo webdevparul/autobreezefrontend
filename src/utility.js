@@ -60,10 +60,7 @@ export const categories = [
     name: "suv",
     id: 2,
   },
-  {
-    name: "Hatchback",
-    id: 3,
-  },
+ 
   {
     name: "Sedan",
     id: 4,
@@ -87,10 +84,7 @@ export const capacity = [
     capacity: 6,
     id: 3,
   },
-  {
-    capacity: 6,
-    id: 4,
-  },
+  
 ];
 
 
