@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
   const user=useSelector(({user})=>user?.user)
-  const userId = user.user_id;
+  const userId = user?.user_id;
   // const isWhite = page === "detail";
 //   const [isOpen, setisOpen] = useState(false);
 

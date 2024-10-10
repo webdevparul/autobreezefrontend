@@ -212,7 +212,7 @@ export const Navigation = ({ page }) => {
   const navigate = useNavigate();
   const dispatch=useDispatch()
   const user=useSelector(({user})=>user?.user)
-  const userId = user.user_id;
+  const userId = user?.user_id;
   // Toggles the offcanvas visibility
   const handleClickToggle = () => {
     setisOpen(!isOpen);

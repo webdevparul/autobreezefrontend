@@ -15,7 +15,7 @@ const ProfileSectionComponent = ({userDetail}) => {
   const { updateProfile } = useUserApi();
   const user=useSelector(({user})=>user?.user)
   const [isEdit, setisEdit] = useState(false)
-  const userId = user.user_id;
+  const userId = user?.user_id;
   // Formik form handling and Yup validation
   const formik = useFormik({
     initialValues: {

@@ -14,7 +14,7 @@ const ProfilePage = () => {
   const [sectionName, setSectionName] = useState("profile");
   const [userDetail, setuserDetail] = useState({})
   const user=useSelector(({user})=>user?.user)
-  const userId = user.user_id;
+  const userId = user?.user_id;
   const dispatch=useDispatch()
 const {getUserDetail}=useUserApi()
   useEffect(() => {
