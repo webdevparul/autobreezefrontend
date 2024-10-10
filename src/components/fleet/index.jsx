@@ -8,9 +8,6 @@ const OurFleet = ({ data }) => {
   const intialData=data?.filter(item=>item.category===Category)
   const [carData, setcarData] = useState(intialData);
   const [isDiplayMore, setisDiplayMore] = useState(false)
-
-  
-
   useEffect(() => {
     if(Category !== "all"){
       setcarData(data?.filter(item=>item.category===Category))

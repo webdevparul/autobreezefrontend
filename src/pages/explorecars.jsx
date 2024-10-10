@@ -8,6 +8,7 @@ import { capacity, categories } from "../utility";
 import CheckBoxComponent from "../components/common/checkbox.component";
 import ModalComponent from "../components/common/modal.component";
 import { useDebounce } from "use-debounce";
+import { useNavigate } from "react-router-dom";
 
 const ExploreCars = ({ data }) => {
   const carInitialData=data
@@ -17,6 +18,7 @@ const ExploreCars = ({ data }) => {
     capacities: [],
     searchText: "",
   });
+  const navigate=useNavigate()
   const [debouncedValue] = useDebounce(filterData.searchText, 1000);
 
   useEffect(() => {
@@ -73,7 +75,11 @@ const ExploreCars = ({ data }) => {
     }))
 
   }
-
+  const handleClickBook = (id) => {
+    if(id){
+      navigate(`/${id}`);
+    }
+  };
   return (
     <div className="explorecar-section  bg-theme-gray">
       <Navigation />
@@ -143,8 +149,8 @@ const ExploreCars = ({ data }) => {
                     <CarCardComponent
                       bg="bg-theme-gray"
                       carDetail={car}
+                      handleClickBook={handleClickBook}
                       idindex={index}
-                      handleClickBook={() => {}}
                     />
                   );
                 }

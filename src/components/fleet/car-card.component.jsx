@@ -84,7 +84,7 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
           <h5 className="card-title text-theme fs-3 fw-semibold pb-2 text-capitalize text-center">
             {carDetail.title}
           </h5>
-          <div className="w-100 mt-2 mb-2 d-flex justify-content-center flex-wrap">
+          {/* <div className="w-100 mt-2 mb-2 d-flex justify-content-center flex-wrap">
             {carDetail.bookTime.map((time, index) => (
               <div
                 key={index}
@@ -95,7 +95,22 @@ const CarCardComponent = ({ carDetail, idindex, handleClickBook, bg = "" }) => {
                 <h6 className="fw-semibold text-theme text-center">{time.price}</h6>
               </div>
             ))}
-          </div>
+          </div> */}
+            <div className="w-100 mt-2 mb-2  d-inline-block d-flex ">
+         <div className={`price-card me-2 ${period === 'Daily'?"act":""}`} onClick={()=>handleClickBookPeriod(carDetail.bookTime[0].price,"Daily")}>
+           <h6>Daily</h6>
+           <h6 className="fw-semibold text-theme " >{carDetail.bookTime[0].price}</h6>
+         </div>
+         <div className={`price-card me-2 ${period === 'Week'?"act":""}`} onClick={()=>handleClickBookPeriod(carDetail.bookTime[1].price,"Week")}>
+           <h6>Weekly</h6>
+           <h6 className="fw-semibold text-theme ">{carDetail.bookTime[1].price}</h6>
+         </div>
+
+         <div className={`price-card me-2 ${period === 'Month'?"act":""}`} onClick={()=>handleClickBookPeriod(carDetail.bookTime[2].price,"Month")}>
+           <h6>Monthly</h6>
+           <h6 className="fw-semibold text-theme ">{carDetail.bookTime[2].price}</h6>
+         </div>
+       </div>
           <button
             className="btn-style btn bg-dark-blue w-100 border-0 text-white mb-2 py-3 fs-6 mt-3"
             onClick={() => handleClickBook(carDetail?.id)}
