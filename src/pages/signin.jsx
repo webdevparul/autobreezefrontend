@@ -31,7 +31,7 @@ const SignIn = () => {
         //manage redux 
         dispatch(addUser(data?.data))
         handleNotify(data.message,TOASTER_TYPE.SUCCESS,TOASTER_POSITION.TOP_RIGHT)
-        navigate("/")
+        navigate("/profile")
       }
      } catch (error) {
       

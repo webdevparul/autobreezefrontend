@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios';
+import TOASTER_TYPE from '../components/common/notification/toaster_types.component';
+import TOASTER_POSITION from '../components/common/notification/toaster_positions.component';
+import { handleNotify } from '../components/common/notification/toaster_notify.component';
 export class ResponseModel {
     data = [];
     status = 0;
@@ -38,7 +41,6 @@ export const useApi = () => {
             }
         }
         try {
-            debugger
             let response;
             if (requestModel && requestModel !== null && requestModel !== undefined) {
                 response = await axios.post(requestUrl, requestModel, config);
@@ -62,8 +64,8 @@ export const useApi = () => {
         if (isAuthorizationRequired === true) {
             config = {
                 headers: {
-                    // 'content-type': 'application/json',
-                    'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
+                    'content-type': 'application/json',
+                    // 'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
 
                     //'Accept': 'application/json',
                     // 'Authorization': getAuthKey()
@@ -73,10 +75,10 @@ export const useApi = () => {
         else {
             config = {
                 headers: {
-                    // 'content-type': 'application/json'
+                    'content-type': 'application/json'
                         // 'Content-Type': 'multipart/form-data', // This is optional, Axios sets it automatically
-                        'content-type': 'multipart/form-data; boundary=--------------------------165311064951130098837313',
-                        'accept-encoding': 'gzip, deflate, br',
+                        // 'content-type': 'multipart/form-data'
+                        // 'accept-encoding': 'gzip, deflate, br',
 
                 }
             }
@@ -84,13 +86,14 @@ export const useApi = () => {
         try {
             let response;
             if (requestModel && requestModel !== null && requestModel !== undefined) {
-                response = await axios.put(requestUrl, requestModel, config);
+                response = await axios.post(requestUrl, requestModel, config);
             }
             else {
-                response = await axios.put(requestUrl, config);
+                response = await axios.post(requestUrl, config);
             }
-            responseclass = await JSON.parse(response.data.result);
+            responseclass = response.data.result;
         } catch (error) {
+            console.log(error)
             throw new Error(error)
             // errorLog(error, requestModel, methodName, requestUrl).then(res => {
             //     handleNotify(ERRORMESSAGE.TRYAGAIN, ToasterPositions.TopRight, ToasterTypes.Error);

@@ -75,22 +75,24 @@ const ProfileSectionComponent = ({userDetail}) => {
         dl_number: dlNumber || "",
         passport_number: passportNumber || "",
         // user_img: file || null, // Assuming file is an image or null
-        driving_license_file: file || null, // Assuming file is an image or null
+        driving_license_file: file || null,
+        userId:userId
+        // Assuming file is an image or null
       };
-      const formData = new FormData();
+      // const formData = new FormData();
 
-      Object.entries(userData).forEach(([key, value]) => {
-        // Check for files (assuming value can be a File object)
-        if (value instanceof File) {
-          formData.append(key, value);
-        } else if (value) {
-          // Append only if the value is non-null and non-empty
-          formData.append(key, value);
-        }
-      });
-      console.log(formData.get('first_name'));
+      // Object.entries(userData).forEach(([key, value]) => {
+      //   // Check for files (assuming value can be a File object)
+      //   if (value instanceof File) {
+      //     formData.append(key, value);
+      //   } else if (value) {
+      //     // Append only if the value is non-null and non-empty
+      //     formData.append(key, value);
+      //   }
+      // });
+      // console.log(formData.get('first_name'));
       // console.log(data)
-      const data = await updateProfile(formData, userId);
+      const data = await updateProfile(userData, userId);
       if (data && data?.isSucess) {
         //manage redux
         handleNotify(
@@ -407,7 +409,7 @@ console.log(isEdit)
               <div className="text-danger">{formik.errors.pinCode}</div>
             ) : null}
           </div>
-       {isEdit&&   <div className="row">
+       {/* {isEdit&&   <div className="row">
               <div className="col-12 mt-3">
                 <FileUploader
                   name="file"
@@ -416,7 +418,7 @@ console.log(isEdit)
                   handleChange={(file) => formik.setFieldValue("file", file)}
                 />
               </div>
-            </div>}
+            </div>} */}
         </div>
       </div>
     </div>

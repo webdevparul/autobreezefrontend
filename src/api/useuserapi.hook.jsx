@@ -1,3 +1,4 @@
+import { handleNotify, TOASTER_POSITION, TOASTER_TYPE } from "../components/common/notification/toaster_notify.component";
 import { END_POINT } from "../config";
 import { API_RESPONSE_STATUS, ResponseModel, useApi } from "./useapi.hook";
 
@@ -17,6 +18,9 @@ const useUserApi = (initialUrl) => {
         responseModel.status === API_RESPONSE_STATUS.SUCCESS
       ) {
         return responseModel;
+      }
+      else if(responseModel.status === API_RESPONSE_STATUS.FAIL ||responseModel.status === API_RESPONSE_STATUS.UNAUTHORIZED){
+        handleNotify(responseModel.errormessage,TOASTER_TYPE.ERROR,TOASTER_POSITION.TOP_RIGHT)
       }
     } catch (err) {
       throw new Error(err);
@@ -39,25 +43,30 @@ const useUserApi = (initialUrl) => {
       ) {
         return responseModel;
       }
+     else if(responseModel.status === API_RESPONSE_STATUS.FAIL ||responseModel.status === API_RESPONSE_STATUS.UNAUTHORIZED){
+      handleNotify(responseModel.errormessage,TOASTER_TYPE.ERROR,TOASTER_POSITION.TOP_RIGHT)
+    }
     } catch (err) {
       throw new Error(err);
     }
     
   };
   const updateProfile = async (data,userId) => {
-   debugger
     try {
       responseModel = await handleAxiosPutAsync(
         data,
-        `${END_POINT.USER}/${userId}`
+        `${END_POINT.USER}/update`
       );
       if (
         responseModel &&
         responseModel.status === API_RESPONSE_STATUS.SUCCESS
       ) {
         return responseModel;
+      }else if(responseModel.status === API_RESPONSE_STATUS.FAIL ||responseModel.status === API_RESPONSE_STATUS.UNAUTHORIZED){
+        handleNotify(responseModel.errormessage,TOASTER_TYPE.ERROR,TOASTER_POSITION.TOP_RIGHT)
       }
     } catch (err) {
+      console.log(err)
       throw new Error(err);
     }
   }
