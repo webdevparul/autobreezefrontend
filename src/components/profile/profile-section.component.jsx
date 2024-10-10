@@ -19,17 +19,17 @@ const ProfileSectionComponent = ({userDetail}) => {
   // Formik form handling and Yup validation
   const formik = useFormik({
     initialValues: {
-      firstName: user.first_name,
-      middleName: user.middle_name,
-      lastName: user.last_name,
-      mobileNumber: user.mobile_number,
-      emailId: user.email,
-      nationality: user.nationality,
-      addressLine1: user.address_line1,
-      addressLine2:user.address_line2,
-      pinCode: user.pin_code,
-      dlNumber: user.dl_number,
-      passportNumber: user.passport_number,
+      firstName: user?.first_name,
+      middleName: user?.middle_name,
+      lastName: user?.last_name,
+      mobileNumber: user?.mobile_number,
+      emailId: user?.email,
+      nationality: user?.nationality,
+      addressLine1: user?.address_line1,
+      addressLine2:user?.address_line2,
+      pinCode: user?.pin_code,
+      dlNumber: user?.dl_number,
+      passportNumber: user?.passport_number,
       file: null,
     },
     validationSchema: Yup.object({

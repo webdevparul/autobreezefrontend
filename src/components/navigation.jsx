@@ -295,12 +295,23 @@ export const Navigation = ({ page }) => {
                   Explore Cars
                 </a>
               </li>
+                      {(userId&&userId>0) && 
+                        <li className="nav-item">
+                <a
+                  onClick={() => handleClickLink("profile")}
+                  className={`nav-link active page-scroll cursor-pointer pointer-cursor ${
+                    isWhite ? "text-theme" : "text-white"
+                  }`}
+                >
+                  Profile
+                </a>
+              </li>
+}
             </ul>
           </div>
 
           {/* Right side: Sign In button */}
           <div className="navbar-text text-end d-none d-lg-block">
-            
               {(userId&&userId>0) ? 
             <button
             // style={{visibility:"hidden"}}
