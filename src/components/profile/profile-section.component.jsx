@@ -103,7 +103,6 @@ const ProfileSectionComponent = ({userDetail}) => {
       }
     },
   });
-console.log(isEdit)
   return (
     <div className="profile-detail-section mt-5 bg-white py-2 pb-3 mb-3 px-3">
   <form className={`profile-form ${isEdit?"":"not-edit"}`} onSubmit={formik.handleSubmit}>
