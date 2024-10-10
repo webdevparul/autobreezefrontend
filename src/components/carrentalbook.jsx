@@ -14,7 +14,7 @@ const RentalBooking = ({ section, name, data ,carData,page,rentalBookData}) => {
   const [timePeriod, setTimePeriod] = useState("months");
   const [timeCount, setTimeCount] = useState(0);
   const [delivery, setDelivery] = useState(1)
-  const [address, setAddress] = useState("12/245, Al abad Plaza, Abu Dhabi");
+  const [address, setAddress] = useState("");
 
   const cars = data;
   function calculateTime(startDate, endDate, timePeriod) {

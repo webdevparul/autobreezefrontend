@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
+  const user=useSelector(({user})=>user?.user)
+  const userId = user?.user_id;
   // const isWhite = page === "detail";
 //   const [isOpen, setisOpen] = useState(false);
 
@@ -87,9 +90,14 @@ export function OffCanvas({handleClickToggle,redirectPage,handleClickLink}) {
               >
                 Explore Cars
               </a></li>
-              {/* <li className="canvas-li py-2 text-theme fs-4" 
+             {(userId&&userId>0) ? <li className="canvas-li py-2 text-theme fs-4" 
               //  onClick={() => redirectPage("signin")} 
-               data-bs-dismiss="offcanvas">Sign in</li> */}
+               data-bs-dismiss="offcanvas" onClick={() => handleClickLink( "signin")}>Sign in</li>:
+               <li className="canvas-li py-2 text-theme fs-4" 
+               //  onClick={() => redirectPage("signin")} 
+                data-bs-dismiss="offcanvas" 
+                // onClick={() => handleClickLink( "profile")}
+                >Logout</li> }
             </ul>
           </div>
         </div>
