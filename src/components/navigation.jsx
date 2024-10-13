@@ -203,12 +203,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { OffCanvas } from "./common/sidecanvas.component";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../redux/user/userslice";
 
 export const Navigation = ({ page }) => {
   const isWhite = page === "detail";
   const [isOpen, setisOpen] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch=useDispatch()
+  const user=useSelector(({user})=>user?.user)
+  const userId = user?.user_id;
   // Toggles the offcanvas visibility
   const handleClickToggle = () => {
     setisOpen(!isOpen);
@@ -219,6 +223,11 @@ export const Navigation = ({ page }) => {
     setisOpen(false);
     navigate(`/${path}`);
   };
+
+  const handleClickLogout=()=>{
+    dispatch(logoutUser())
+    navigate('/signin')
+  }
 
   return (
     <>
@@ -286,21 +295,45 @@ export const Navigation = ({ page }) => {
                   Explore Cars
                 </a>
               </li>
+                      {(userId&&userId>0) && 
+                        <li className="nav-item">
+                <a
+                  onClick={() => handleClickLink("profile")}
+                  className={`nav-link active page-scroll cursor-pointer pointer-cursor ${
+                    isWhite ? "text-theme" : "text-white"
+                  }`}
+                >
+                  Profile
+                </a>
+              </li>
+}
             </ul>
           </div>
 
           {/* Right side: Sign In button */}
           <div className="navbar-text text-end d-none d-lg-block">
+              {(userId&&userId>0) ? 
             <button
-            style={{visibility:"hidden"}}
+            // style={{visibility:"hidden"}}
               type="button"
               className={`btn v-hidden ${
                 isWhite ? "btn-outline-dark" : "btn-outline-light"
               }`}
-              // onClick={() => handleClickLink("signin")}
+              onClick={handleClickLogout}
+            >
+              Logout
+            </button>
+           : <button
+            // style={{visibility:"hidden"}}
+              type="button"
+              className={`btn v-hidden ${
+                isWhite ? "btn-outline-dark" : "btn-outline-light"
+              }`}
+              onClick={() => handleClickLink("signin")}
             >
               Sign In
             </button>
+}
           </div>
         </div>
       </nav>

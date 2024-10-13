@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import SignLeftSide from "../components/sign/signside.component";
+import useUserApi from "../api/useuserapi.hook";
+import { handleNotify, TOASTER_POSITION, TOASTER_TYPE } from "../components/common/notification/toaster_notify.component";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const [isPassword, setisPassword] = useState(true);
   const [isConfirmPassword, setisConfirmPassword] = useState(true);
-
+  const { signUp } = useUserApi();
   const togglePassword = () => {
     setisPassword(!isPassword);
   };
@@ -30,10 +32,19 @@ const SignUp = () => {
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("Confirm password is required"),
     }),
-    onSubmit: (values) => {
+    onSubmit:async (values) => {
       console.log(values);
       // Navigate to the desired page after successful signup
-      navigate("/dashboard"); 
+      try {
+        const data=await signUp(values)
+      if(data&&data?.isSucess){
+        handleNotify(data.message,TOASTER_TYPE.SUCCESS,TOASTER_POSITION.TOP_RIGHT)
+        navigate("/signin")
+      }
+      } catch (error) {
+        console.log(error)
+      }
+      
     },
   });
 
@@ -59,7 +70,9 @@ const SignUp = () => {
                 <input
                   type="text"
                   className={`form-control ${
-                    formik.touched.email && formik.errors.email ? "is-invalid" : ""
+                    formik.touched.email && formik.errors.email
+                      ? "is-invalid"
+                      : ""
                   }`}
                   id="email"
                   name="email"
@@ -80,7 +93,9 @@ const SignUp = () => {
                   <input
                     type={isPassword ? "password" : "text"}
                     className={`form-control ${
-                      formik.touched.password && formik.errors.password ? "is-invalid" : ""
+                      formik.touched.password && formik.errors.password
+                        ? "is-invalid"
+                        : ""
                     }`}
                     id="password"
                     name="password"
@@ -112,7 +127,8 @@ const SignUp = () => {
                   <input
                     type={isConfirmPassword ? "password" : "text"}
                     className={`form-control ${
-                      formik.touched.confirmPassword && formik.errors.confirmPassword
+                      formik.touched.confirmPassword &&
+                      formik.errors.confirmPassword
                         ? "is-invalid"
                         : ""
                     }`}
@@ -134,8 +150,11 @@ const SignUp = () => {
                     )}
                   </span>
                 </div>
-                {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
-                  <div className="text-danger">{formik.errors.confirmPassword}</div>
+                {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword ? (
+                  <div className="text-danger">
+                    {formik.errors.confirmPassword}
+                  </div>
                 ) : null}
               </div>
               <button type="submit" className="btn btn-custom w-100">

@@ -2,9 +2,9 @@ import React from 'react'
 
 const OrderCardComponent = ({orderDetail}) => {
   return (
-    <div className="row car-card mb-2 align-items-center bg-white py-4" style={{borderRadius:"4px"}}>
+    <div className="row car-card mb-2 align-items-center bg-white py-4 livecar-section" style={{borderRadius:"4px"}}>
     {/* Car Image Column */}
-    <div className="col text-center">
+    <div className="col  car-img text-center mb-4 mb-md-0">
       <img
       style={{width:"211px",height:"108px"}}
         src="./img/car/chevy.png"
@@ -12,7 +12,7 @@ const OrderCardComponent = ({orderDetail}) => {
       />
     </div>
     {/* Car Details Column */}
-    <div className="col car-details">
+    <div className="col  car-details">
       <h4>Mazda Cx5</h4>
       <p>
         <span className="label">Booking ID:</span> 3657316614
@@ -41,9 +41,9 @@ const OrderCardComponent = ({orderDetail}) => {
       </p>
      
     </div>
-    <div className="col-1 text-end invoice-btn-div">
+    <div className="col-12 col-md-1 text-end invoice-btn-div w-100">
     {/* <div className="invoice-button"> */}
-        <button className="btn btn-outline-dark btn-sm">View Invoice</button>
+        <button className="btn btn-outline-dark btn-sm w-100">View Invoice</button>
       {/* </div> */}
     </div>
   </div>
